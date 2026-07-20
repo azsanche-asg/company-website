@@ -1,0 +1,1644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EyeTrustAI | The Runtime Risk Gate for AI Workflows</title>
+
+    <meta
+        name="description"
+        content="EyeTrustAI is the runtime Risk Gate for AI workflows. Define a mistake budget, calibrate on real workflow mistakes, and control the mistake rate among outputs and actions released automatically."
+    />
+    <meta name="theme-color" content="#F9F9F9" />
+
+    <style>
+        :root {
+            --bg-color: #F9F9F9;
+            --card-bg: #FFFFFF;
+            --text-primary: #050505;
+            --text-secondary: #555555;
+            --text-muted: #8A8A8A;
+            --line-color: #E5E5E5;
+            --line-strong: #D8D8D8;
+            --accent: #111111;
+            --soft-accent: #F0F0F0;
+            --shadow-soft: 0 20px 60px rgba(0,0,0,0.035);
+
+            --proceed: #137A4B;
+            --proceed-bg: #EFF8F3;
+            --defer: #A76500;
+            --defer-bg: #FFF7E8;
+            --escalate: #5E4B8B;
+            --escalate-bg: #F5F1FB;
+            --block: #B42318;
+            --block-bg: #FFF1F0;
+
+            --spacing-xl: 8rem;
+            --spacing-lg: 5rem;
+
+            --font-serif: "Georgia", "Times New Roman", Times, serif;
+            --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            font-family: var(--font-sans);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+            text-rendering: optimizeLegibility;
+        }
+
+        a { color: inherit; }
+        img { max-width: 100%; display: block; }
+        code, pre { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace; }
+
+        h1, h2, h3 {
+            font-family: var(--font-serif);
+            font-weight: 400;
+            color: var(--text-primary);
+            letter-spacing: -0.025em;
+        }
+
+        p {
+            font-size: 1.125rem;
+            margin-bottom: 1.4rem;
+            color: var(--text-secondary);
+        }
+
+        strong {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .eyebrow {
+            font-family: var(--font-sans);
+            font-size: 0.78rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--text-muted);
+            display: block;
+            margin-bottom: 1rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .split-section {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 4rem;
+            padding: var(--spacing-lg) 0;
+            border-top: 1px solid var(--line-color);
+        }
+
+        .sticky-col {
+            position: sticky;
+            top: 4rem;
+            height: fit-content;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 3vw, 3rem);
+            line-height: 1.1;
+            margin-bottom: 1rem;
+        }
+
+        .section-intro {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            max-width: 800px;
+        }
+
+        header {
+            padding: 2rem 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+        }
+
+        .brand-logo {
+            width: 34px;
+            height: 34px;
+            object-fit: contain;
+            flex-shrink: 0;
+        }
+
+        .brand-name {
+            font-family: var(--font-sans);
+            font-weight: 750;
+            font-size: 1.25rem;
+            letter-spacing: -0.04em;
+            color: var(--text-primary);
+            line-height: 1.05;
+        }
+
+        .brand-copy {
+            display: flex;
+            flex-direction: column;
+            gap: 0.12rem;
+        }
+
+        .brand-tagline {
+            color: var(--text-muted);
+            font-size: 0.76rem;
+            letter-spacing: -0.01em;
+            line-height: 1.2;
+            white-space: nowrap;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
+
+        .text-link {
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            transition: color 0.2s ease;
+        }
+
+        .text-link:hover,
+        .text-link:focus-visible { color: var(--text-primary); }
+
+        .cta-button {
+            text-decoration: none;
+            color: var(--text-primary);
+            font-size: 0.9rem;
+            border: 1px solid #D8D8D8;
+            padding: 0.55rem 1rem;
+            border-radius: 999px;
+            transition: all 0.2s ease;
+            background: rgba(255,255,255,0.5);
+            white-space: nowrap;
+        }
+
+        .cta-button:hover,
+        .cta-button:focus-visible {
+            background: #000;
+            color: #fff;
+            border-color: #000;
+        }
+
+        .hero-actions,
+        .cta-row {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .primary-button,
+        .secondary-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            border-radius: 999px;
+            padding: 0.85rem 1.25rem;
+            font-size: 0.95rem;
+            transition: all 0.2s ease;
+        }
+
+        .primary-button {
+            background: var(--text-primary);
+            color: #fff;
+            border: 1px solid var(--text-primary);
+        }
+
+        .primary-button:hover,
+        .primary-button:focus-visible {
+            transform: translateY(-1px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+        }
+
+        .secondary-button {
+            color: var(--text-primary);
+            border: 1px solid var(--line-color);
+            background: rgba(255,255,255,0.55);
+        }
+
+        .secondary-button:hover,
+        .secondary-button:focus-visible {
+            border-color: #000;
+            background: #fff;
+        }
+
+        .tag {
+            border: 1px solid var(--line-color);
+            border-radius: 999px;
+            padding: 0.38rem 0.7rem;
+            font-size: 0.78rem;
+            color: var(--text-secondary);
+            background: rgba(255,255,255,0.62);
+        }
+
+        .principle-line {
+            margin: 1.75rem auto 0;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            max-width: 680px;
+        }
+
+        .hero {
+            padding: 10vh 0 9vh 0;
+            text-align: center;
+        }
+
+        .hero-kicker {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            border: 1px solid var(--line-color);
+            border-radius: 999px;
+            padding: 0.45rem 0.85rem;
+            background: rgba(255,255,255,0.5);
+            margin-bottom: 2rem;
+        }
+
+        .dot {
+            width: 7px;
+            height: 7px;
+            background: var(--text-primary);
+            border-radius: 999px;
+            display: inline-block;
+        }
+
+        .hero-headline {
+            font-size: clamp(3.2rem, 7.4vw, 6.8rem);
+            line-height: 0.94;
+            letter-spacing: -0.065em;
+            max-width: 1060px;
+            margin: 0 auto 2rem auto;
+        }
+
+        .hero-subhead {
+            max-width: 910px;
+            margin: 0 auto 2.5rem auto;
+            font-size: clamp(1.12rem, 1.8vw, 1.38rem);
+            color: var(--text-secondary);
+            line-height: 1.58;
+        }
+
+        .product-showcase {
+            padding: 0 0 var(--spacing-lg);
+        }
+
+        .showcase-header {
+            text-align: center;
+            max-width: 880px;
+            margin: 0 auto 2.5rem;
+        }
+
+        .showcase-header h2 {
+            font-size: clamp(2.2rem, 4vw, 4rem);
+            line-height: 1.02;
+            margin-bottom: 1rem;
+        }
+
+        .orchestrator-shell {
+            background: var(--card-bg);
+            border: 1px solid var(--line-color);
+            border-radius: 28px;
+            box-shadow: var(--shadow-soft);
+            overflow: hidden;
+        }
+
+        .orchestrator-topbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            padding: 1rem 1.25rem;
+            border-bottom: 1px solid var(--line-color);
+            background: rgba(255,255,255,0.74);
+        }
+
+        .window-dots {
+            display: flex;
+            gap: 0.35rem;
+            align-items: center;
+        }
+
+        .window-dots span {
+            width: 9px;
+            height: 9px;
+            border-radius: 999px;
+            background: #D9D9D9;
+            display: inline-block;
+        }
+
+        .orchestrator-title {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-left: 0.75rem;
+        }
+
+        .orchestrator-actions {
+            display: flex;
+            gap: 0.55rem;
+            align-items: center;
+        }
+
+        .mini-button {
+            border: 1px solid var(--line-color);
+            border-radius: 999px;
+            background: #fff;
+            padding: 0.35rem 0.65rem;
+            font-size: 0.78rem;
+            color: var(--text-secondary);
+        }
+
+        .orchestrator-body {
+            display: grid;
+            grid-template-columns: 1.65fr 0.9fr;
+            min-height: 620px;
+        }
+
+        .canvas {
+            padding: 1.75rem;
+            border-right: 1px solid var(--line-color);
+            background-image: radial-gradient(#E8E8E8 0.8px, transparent 0.8px);
+            background-size: 16px 16px;
+            position: relative;
+        }
+
+        .canvas-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .canvas-header h3 {
+            font-family: var(--font-sans);
+            font-weight: 700;
+            font-size: 1.2rem;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.2rem;
+        }
+
+        .canvas-header p {
+            font-size: 0.9rem;
+            margin: 0;
+        }
+
+        .status-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            border-radius: 999px;
+            padding: 0.3rem 0.55rem;
+            border: 1px solid var(--line-color);
+            background: #fff;
+            color: var(--text-secondary);
+            font-size: 0.75rem;
+            white-space: nowrap;
+        }
+
+        .workflow-row {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr auto 1fr auto 1.1fr;
+            gap: 0.85rem;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .node-card {
+            background: #fff;
+            border: 1px solid var(--line-color);
+            border-radius: 18px;
+            padding: 1rem;
+            min-height: 120px;
+            box-shadow: 0 12px 36px rgba(0,0,0,0.03);
+        }
+
+        .node-icon {
+            width: 34px;
+            height: 34px;
+            border-radius: 999px;
+            background: var(--soft-accent);
+            display: grid;
+            place-items: center;
+            margin-bottom: 0.9rem;
+            color: var(--text-primary);
+            font-size: 1rem;
+        }
+
+        .node-card h4 {
+            font-size: 0.95rem;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.35rem;
+        }
+
+        .node-card span {
+            display: block;
+            color: var(--text-muted);
+            font-size: 0.78rem;
+        }
+
+        .flow-arrow {
+            color: var(--text-muted);
+            font-size: 1.2rem;
+            text-align: center;
+        }
+
+        .risk-gate-node {
+            min-height: 150px;
+            border-color: var(--accent);
+            box-shadow: 0 24px 60px rgba(0,0,0,0.08);
+            position: relative;
+            background: linear-gradient(180deg, #FFFFFF 0%, #F7F7F7 100%);
+        }
+
+        .risk-gate-node::after {
+            content: "selected";
+            position: absolute;
+            top: 0.7rem;
+            right: 0.75rem;
+            font-size: 0.65rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        .risk-logo {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            display: grid;
+            place-items: center;
+            background: #fff;
+            border: 1px solid var(--line-color);
+            margin-bottom: 0.9rem;
+            padding: 7px;
+        }
+
+        .risk-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .module-badge {
+            display: inline-flex;
+            align-items: center;
+            border-radius: 999px;
+            border: 1px solid var(--line-color);
+            padding: 0.28rem 0.5rem;
+            font-size: 0.68rem;
+            color: var(--text-secondary);
+            background: #fff;
+            margin-top: 0.85rem;
+        }
+
+        .routing-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 0.85rem;
+        }
+
+        .route-card {
+            border: 1px solid var(--line-color);
+            border-radius: 16px;
+            padding: 0.8rem;
+            background: rgba(255,255,255,0.82);
+        }
+
+        .route-card strong {
+            display: block;
+            font-size: 0.78rem;
+            margin-bottom: 0.15rem;
+            letter-spacing: 0.02em;
+        }
+
+        .route-card span {
+            color: var(--text-secondary);
+            font-size: 0.76rem;
+            line-height: 1.35;
+            display: block;
+        }
+
+        .route-proceed { border-color: rgba(19, 122, 75, 0.3); background: var(--proceed-bg); }
+        .route-proceed strong { color: var(--proceed); }
+        .route-defer { border-color: rgba(167, 101, 0, 0.3); background: var(--defer-bg); }
+        .route-defer strong { color: var(--defer); }
+        .route-escalate { border-color: rgba(94, 75, 139, 0.3); background: var(--escalate-bg); }
+        .route-escalate strong { color: var(--escalate); }
+        .route-block { border-color: rgba(180, 35, 24, 0.26); background: var(--block-bg); }
+        .route-block strong { color: var(--block); }
+
+        .artifact-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .artifact-card {
+            border: 1px solid var(--line-color);
+            border-radius: 18px;
+            background: rgba(255,255,255,0.84);
+            padding: 1rem;
+            box-shadow: 0 12px 36px rgba(0,0,0,0.02);
+        }
+
+        .artifact-card h4 {
+            font-size: 0.82rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--text-muted);
+            margin-bottom: 0.75rem;
+        }
+
+        .code-block {
+            font-size: 0.78rem;
+            line-height: 1.55;
+            color: #1F1F1F;
+            white-space: pre-wrap;
+            overflow-wrap: anywhere;
+        }
+
+        .config-panel {
+            padding: 1.5rem;
+            background: #fff;
+        }
+
+        .config-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .config-header h3 {
+            font-family: var(--font-sans);
+            font-size: 1.2rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 0.85rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--line-color);
+            margin-bottom: 1rem;
+            font-size: 0.85rem;
+        }
+
+        .tabs span:first-child { color: var(--text-primary); font-weight: 700; }
+        .tabs span:not(:first-child) { color: var(--text-muted); }
+
+        .field {
+            display: grid;
+            grid-template-columns: 0.95fr 1.4fr;
+            gap: 1rem;
+            padding: 0.65rem 0;
+            border-bottom: 1px solid var(--line-color);
+            align-items: center;
+        }
+
+        .field-label { color: var(--text-muted); font-size: 0.8rem; }
+
+        .field-value {
+            color: var(--text-primary);
+            font-size: 0.82rem;
+            border: 1px solid var(--line-color);
+            border-radius: 10px;
+            padding: 0.45rem 0.55rem;
+            background: var(--bg-color);
+        }
+
+        .progress-card {
+            border: 1px solid var(--line-color);
+            border-radius: 16px;
+            padding: 1rem;
+            margin: 1rem 0;
+            background: var(--bg-color);
+        }
+
+        .progress-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            margin-bottom: 0.6rem;
+        }
+
+        .progress-track {
+            height: 8px;
+            background: #EAEAEA;
+            border-radius: 999px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            width: 43%;
+            height: 100%;
+            background: #111;
+            border-radius: inherit;
+        }
+
+        .decision-preview {
+            border: 1px solid var(--line-color);
+            border-radius: 18px;
+            padding: 1rem;
+            margin-top: 1.25rem;
+            background: #fff;
+            box-shadow: 0 12px 36px rgba(0,0,0,0.025);
+        }
+
+        .decision-preview h4 {
+            font-family: var(--font-sans);
+            font-size: 0.95rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .decision-line {
+            display: grid;
+            grid-template-columns: 0.9fr 1.4fr;
+            gap: 1rem;
+            font-size: 0.82rem;
+            padding: 0.35rem 0;
+        }
+
+        .decision-line span:first-child { color: var(--text-muted); }
+
+        .decision-token {
+            width: fit-content;
+            border: 1px solid rgba(167, 101, 0, 0.32);
+            background: var(--defer-bg);
+            color: var(--defer);
+            border-radius: 999px;
+            padding: 0.1rem 0.5rem;
+            font-weight: 700;
+        }
+
+        .step-grid,
+        .feature-grid,
+        .module-grid,
+        .official-grid,
+        .audience-grid,
+        .faq-grid {
+            display: grid;
+            gap: 1.25rem;
+            margin-top: 2.25rem;
+        }
+
+        .step-grid { grid-template-columns: repeat(5, 1fr); }
+        .feature-grid, .official-grid { grid-template-columns: repeat(3, 1fr); }
+        .module-grid, .audience-grid { grid-template-columns: repeat(4, 1fr); }
+        .faq-grid { grid-template-columns: 1fr; }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--line-color);
+            border-radius: 22px;
+            padding: 1.35rem;
+            box-shadow: var(--shadow-soft);
+        }
+
+        .card h3,
+        .card h4 {
+            font-size: 1.45rem;
+            line-height: 1.12;
+            margin-bottom: 0.9rem;
+        }
+
+        .card p {
+            font-size: 0.98rem;
+            margin-bottom: 0;
+        }
+
+        .step-card { position: relative; min-height: 220px; }
+
+        .step-number {
+            width: 34px;
+            height: 34px;
+            display: grid;
+            place-items: center;
+            border: 1px solid var(--line-color);
+            border-radius: 999px;
+            margin-bottom: 1rem;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            background: var(--bg-color);
+        }
+
+        .principle-card {
+            background: #111;
+            color: #fff;
+            border-radius: 28px;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+
+        .principle-card h3 {
+            color: #fff;
+            font-family: var(--font-serif);
+            font-size: clamp(2rem, 3vw, 3.3rem);
+            line-height: 1.05;
+            margin-bottom: 1rem;
+        }
+
+        .principle-card p {
+            color: #D8D8D8;
+            max-width: 760px;
+            margin-bottom: 0;
+        }
+
+        .module-card .module-kind {
+            display: inline-flex;
+            border: 1px solid var(--line-color);
+            background: var(--bg-color);
+            border-radius: 999px;
+            padding: 0.35rem 0.65rem;
+            color: var(--text-secondary);
+            font-size: 0.78rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .platform-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.65rem;
+            margin-top: 1.5rem;
+        }
+
+        .faq-item { box-shadow: none; }
+
+        .faq-item h3 {
+            font-family: var(--font-sans);
+            font-size: 1.05rem;
+            font-weight: 700;
+            letter-spacing: -0.01em;
+        }
+
+        .team-wrapper {
+            display: grid;
+            grid-template-columns: 1.1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            margin-top: 2rem;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.25rem;
+        }
+
+        .team-member {
+            background: var(--card-bg);
+            border: 1px solid var(--line-color);
+            border-radius: 22px;
+            padding: 1.25rem;
+            text-align: center;
+            box-shadow: var(--shadow-soft);
+        }
+
+        .portrait-frame {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            border-radius: 18px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+            background: #EFEFEF;
+            border: 1px solid var(--line-color);
+        }
+
+        .portrait-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(100%);
+        }
+
+        .member-name {
+            font-weight: 700;
+            color: var(--text-primary);
+            display: block;
+            line-height: 1.3;
+        }
+
+        .member-role {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            display: block;
+            margin-top: 0.25rem;
+        }
+
+        .team-description h3 {
+            font-size: 2rem;
+            line-height: 1.15;
+            margin-bottom: 1.5rem;
+        }
+
+        .final-cta {
+            border-top: 1px solid var(--line-color);
+            padding: var(--spacing-xl) 0;
+            text-align: center;
+        }
+
+        .final-cta h2 {
+            font-size: clamp(2.5rem, 5vw, 4.75rem);
+            line-height: 1;
+            max-width: 980px;
+            margin: 0 auto 2rem auto;
+        }
+
+        .final-cta p {
+            max-width: 760px;
+            margin: 0 auto 2rem auto;
+            font-size: 1.2rem;
+        }
+
+        footer {
+            border-top: 1px solid var(--line-color);
+            padding: 3rem 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 2rem;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .footer-brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .footer-logo {
+            width: 24px;
+            height: 24px;
+            object-fit: contain;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 1.25rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .footer-links a:hover,
+        .footer-links a:focus-visible { color: var(--text-primary); }
+
+        @media (max-width: 1100px) {
+            .step-grid { grid-template-columns: repeat(2, 1fr); }
+            .feature-grid,
+            .official-grid,
+            .module-grid,
+            .audience-grid { grid-template-columns: repeat(2, 1fr); }
+            .orchestrator-body,
+            .team-wrapper { grid-template-columns: 1fr; }
+            .canvas {
+                border-right: 0;
+                border-bottom: 1px solid var(--line-color);
+            }
+        }
+
+        @media (max-width: 980px) {
+            .split-section {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                padding: 4rem 0;
+            }
+            .sticky-col { position: relative; top: 0; }
+            .workflow-row {
+                grid-template-columns: 1fr;
+                gap: 0.75rem;
+            }
+            .flow-arrow {
+                transform: rotate(90deg);
+                width: fit-content;
+                margin: 0 auto;
+            }
+            .artifact-row { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 768px) {
+            :root { --spacing-xl: 5rem; --spacing-lg: 4rem; }
+            .container { padding: 0 1.25rem; }
+            header {
+                align-items: flex-start;
+                flex-direction: column;
+                gap: 1.25rem;
+            }
+            .brand-logo { width: 30px; height: 30px; }
+            .brand-tagline { white-space: normal; max-width: 260px; }
+            .nav-actions { justify-content: flex-start; gap: 0.75rem; }
+            .text-link { display: none; }
+            .hero { padding: 7vh 0 7vh 0; }
+            .hero-headline { font-size: clamp(3rem, 15vw, 4.6rem); }
+            .hero-subhead { font-size: 1.08rem; }
+            .orchestrator-topbar {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+            .canvas,
+            .config-panel { padding: 1rem; }
+            .canvas-header { flex-direction: column; }
+            .routing-grid,
+            .step-grid,
+            .feature-grid,
+            .official-grid,
+            .module-grid,
+            .audience-grid,
+            .team-grid { grid-template-columns: 1fr; }
+            .field,
+            .decision-line {
+                grid-template-columns: 1fr;
+                gap: 0.35rem;
+            }
+            .card { padding: 1.2rem; }
+            footer {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+
+        <header>
+            <a href="#" class="brand" aria-label="EyeTrustAI homepage">
+                <img
+                    src="https://static.wixstatic.com/media/a5c057_37550585d1ca485593c6fc805ca39a69~mv2.png"
+                    alt="EyeTrustAI logo"
+                    class="brand-logo"
+                />
+                <span class="brand-copy">
+                    <span class="brand-name">EyeTrustAI</span>
+                    <span class="brand-tagline">Fewer costly AI mistakes in real workflows.</span>
+                </span>
+            </a>
+
+            <nav class="nav-actions" aria-label="Primary navigation">
+                <a href="#how" class="text-link">How it works</a>
+                <a href="#product" class="text-link">Example</a>
+                <a href="#modules" class="text-link">Modules</a>
+                <a href="#faq" class="text-link">FAQ</a>
+                <a href="#team" class="text-link">Team</a>
+                <a href="https://tally.so/r/PdkWx0" class="cta-button">Join pilot waitlist</a>
+            </nav>
+        </header>
+
+        <main>
+
+            <section class="hero">
+                <div class="hero-kicker">
+                    <span class="dot"></span>
+                    Coming soon · Runtime protection for AI workflows
+                </div>
+
+                <h1 class="hero-headline">
+                    The runtime Risk Gate for AI workflows.
+                </h1>
+
+                <p class="hero-subhead">
+                    EyeTrustAI helps protect AI workflows from costly mistakes before they affect users, tools,
+                    or business processes. You define the mistake budget. Once the Risk Gate is calibrated on real
+                    workflow mistakes, EyeTrustAI guarantees that the mistake rate among automatically released
+                    outputs and actions stays within the budget you defined. It plugs into the AI systems,
+                    workflows, and orchestrators you already use.
+                </p>
+
+                <div class="hero-actions">
+                    <a href="https://tally.so/r/PdkWx0" class="primary-button">
+                        Join pilot waitlist
+                    </a>
+                    <a href="#how" class="secondary-button">
+                        See how it works
+                    </a>
+                </div>
+
+                <p class="principle-line">
+                    Keep your workflow. <strong>Add a calibrated Risk Gate before AI releases outputs or actions automatically.</strong>
+                </p>
+            </section>
+
+            <section class="split-section" id="how">
+                <div class="sticky-col">
+                    <span class="eyebrow">How it works</span>
+                    <h2 class="section-title">
+                        From first install to calibrated enforcement.
+                    </h2>
+                </div>
+
+                <div class="content-col">
+                    <p class="section-intro">
+                        EyeTrustAI is designed to work with the AI systems and workflow tools teams already use.
+                        It starts in warm-up mode, learns from labeled mistakes, and turns calibration into automatic
+                        release control.
+                    </p>
+
+                    <div class="step-grid">
+                        <article class="card step-card">
+                            <div class="step-number">1</div>
+                            <h3>Define</h3>
+                            <p>Set the acceptable mistake rate for automatic release. For example: no more than 5% of automatically released AI outputs or actions should be mistakes.</p>
+                        </article>
+                        <article class="card step-card">
+                            <div class="step-number">2</div>
+                            <h3>Plug in</h3>
+                            <p>Add EyeTrustAI before a consequential AI answer, action, or tool call.</p>
+                        </article>
+                        <article class="card step-card">
+                            <div class="step-number">3</div>
+                            <h3>Warm up</h3>
+                            <p>Run in advisory mode while users, reviewers, tests, or downstream outcomes label mistakes.</p>
+                        </article>
+                        <article class="card step-card">
+                            <div class="step-number">4</div>
+                            <h3>Calibrate</h3>
+                            <p>Use conformal risk control to learn which AI outputs and actions can be certified for automatic release in this deployment.</p>
+                        </article>
+                        <article class="card step-card">
+                            <div class="step-number">5</div>
+                            <h3>Release or route</h3>
+                            <p>Once calibrated, allow automatic release only when the mistake rate is controlled. Otherwise, defer for evidence, escalate to a human, or block.</p>
+                        </article>
+                    </div>
+                </div>
+            </section>
+
+            <section class="product-showcase" id="product" aria-labelledby="product-title">
+                <div class="showcase-header">
+                    <span class="eyebrow">Example workflow</span>
+                    <h2 id="product-title">
+                        Example: a Risk Gate inside a support workflow.
+                    </h2>
+                    <p>
+                        This is one example of how a user would see EyeTrustAI: as a decision step inside an
+                        existing workflow. The same pattern can apply to agents, RAG systems, coding workflows,
+                        enterprise approvals, and orchestration platforms.
+                    </p>
+                </div>
+
+                <div class="orchestrator-shell" aria-label="Generic AI workflow mockup with EyeTrustAI Risk Gate">
+                    <div class="orchestrator-topbar">
+                        <div style="display:flex; align-items:center; gap:0.25rem;">
+                            <div class="window-dots" aria-hidden="true"><span></span><span></span><span></span></div>
+                            <span class="orchestrator-title">Generic AI Workflow · Customer Support Assistant</span>
+                        </div>
+                        <div class="orchestrator-actions" aria-label="Example workflow actions">
+                            <span class="mini-button">Run</span>
+                            <span class="mini-button">Save</span>
+                            <span class="mini-button">Publish</span>
+                        </div>
+                    </div>
+
+                    <div class="orchestrator-body">
+                        <div class="canvas">
+                            <div class="canvas-header">
+                                <div>
+                                    <h3>Customer Support Assistant</h3>
+                                    <p>Handles incoming requests and routes safe, supported answers.</p>
+                                </div>
+                                <span class="status-pill">Example · Advisory mode</span>
+                            </div>
+
+                            <div class="workflow-row" aria-label="Workflow path before risk routing">
+                                <div class="node-card">
+                                    <div class="node-icon">↳</div>
+                                    <h4>New support request</h4>
+                                    <span>Trigger</span>
+                                </div>
+                                <div class="flow-arrow">→</div>
+                                <div class="node-card">
+                                    <div class="node-icon">⌕</div>
+                                    <h4>Retrieve knowledge</h4>
+                                    <span>Retrieval</span>
+                                </div>
+                                <div class="flow-arrow">→</div>
+                                <div class="node-card">
+                                    <div class="node-icon">✦</div>
+                                    <h4>Draft answer</h4>
+                                    <span>LLM</span>
+                                </div>
+                                <div class="flow-arrow">→</div>
+                                <div class="node-card risk-gate-node">
+                                    <div class="risk-logo">
+                                        <img
+                                            src="https://static.wixstatic.com/media/a5c057_37550585d1ca485593c6fc805ca39a69~mv2.png"
+                                            alt="EyeTrustAI logo"
+                                        />
+                                    </div>
+                                    <h4>EyeTrustAI Risk Gate</h4>
+                                    <span>Contract + calibration + evidence + audit</span>
+                                    <div class="module-badge">Reusable module</div>
+                                </div>
+                            </div>
+
+                            <div class="routing-grid" aria-label="Decision routing examples">
+                                <div class="route-card route-proceed">
+                                    <strong>PROCEED → Send answer</strong>
+                                    <span>Continue only when the output is inside the calibrated release region.</span>
+                                </div>
+                                <div class="route-card route-defer">
+                                    <strong>DEFER → Retrieve missing evidence</strong>
+                                    <span>Ask the workflow to collect the evidence needed to retry safely.</span>
+                                </div>
+                                <div class="route-card route-escalate">
+                                    <strong>ESCALATE → Human review</strong>
+                                    <span>Route uncertain or high-impact cases to a person with context.</span>
+                                </div>
+                                <div class="route-card route-block">
+                                    <strong>BLOCK → Stop + audit</strong>
+                                    <span>Prevent hard policy violations and record the incident.</span>
+                                </div>
+                            </div>
+
+                            <div class="artifact-row" aria-label="Product artifacts">
+                                <div class="artifact-card">
+                                    <h4>risk_contract.yaml</h4>
+                                    <pre class="code-block">mistake: unsupported_or_wrong_answer
+loss: bounded_0_1
+risk_target: "≤ 3%"
+evidence:
+  - retrieved_docs
+  - source_policy</pre>
+                                </div>
+                                <div class="artifact-card">
+                                    <h4>SDK / API call</h4>
+                                    <pre class="code-block">decision = eyetrust.guard({
+  module: "support-answer-risk",
+  input, output, evidence
+})</pre>
+                                </div>
+                            </div>
+                        </div>
+
+                        <aside class="config-panel" aria-label="EyeTrustAI Risk Gate configuration panel">
+                            <div class="config-header">
+                                <h3>EyeTrustAI Risk Gate</h3>
+                                <span class="status-pill">Reusable module</span>
+                            </div>
+
+                            <div class="tabs" aria-label="Configuration tabs">
+                                <span>Configure</span>
+                                <span>Advanced</span>
+                                <span>About</span>
+                            </div>
+
+                            <div class="field">
+                                <span class="field-label">Module</span>
+                                <span class="field-value">Customer Support Answer Risk</span>
+                            </div>
+                            <div class="field">
+                                <span class="field-label">Risk Contract</span>
+                                <span class="field-value">support_answer_v1</span>
+                            </div>
+                            <div class="field">
+                                <span class="field-label">Mode</span>
+                                <span class="field-value">Advisory / warm-up</span>
+                            </div>
+
+                            <div class="progress-card">
+                                <div class="progress-top">
+                                    <strong>Calibration</strong>
+                                    <span>43 / 100 labels</span>
+                                </div>
+                                <div class="progress-track" aria-hidden="true">
+                                    <div class="progress-fill"></div>
+                                </div>
+                            </div>
+
+                            <div class="field">
+                                <span class="field-label">Input</span>
+                                <span class="field-value">customer_question</span>
+                            </div>
+                            <div class="field">
+                                <span class="field-label">Output</span>
+                                <span class="field-value">llm_answer</span>
+                            </div>
+                            <div class="field">
+                                <span class="field-label">Evidence</span>
+                                <span class="field-value">retrieved_docs</span>
+                            </div>
+
+                            <div class="decision-preview">
+                                <h4>Decision preview</h4>
+                                <div class="decision-line">
+                                    <span>Decision</span>
+                                    <strong class="decision-token">DEFER</strong>
+                                </div>
+                                <div class="decision-line">
+                                    <span>Reason</span>
+                                    <strong>Insufficient supporting evidence</strong>
+                                </div>
+                                <div class="decision-line">
+                                    <span>Requested evidence</span>
+                                    <strong>Retrieve refund policy document</strong>
+                                </div>
+                            </div>
+                        </aside>
+                    </div>
+                </div>
+            </section>
+
+            <section class="split-section" id="guarantees">
+                <div class="sticky-col">
+                    <span class="eyebrow">The Differentiator</span>
+                    <h2 class="section-title">
+                        From guardrails to guaranteed automatic release control.
+                    </h2>
+                </div>
+
+                <div class="content-col">
+                    <p class="section-intro">
+                        Most AI guardrails enforce static rules: blocklists, policy checks, schemas, or confidence
+                        thresholds. EyeTrustAI goes further. It learns from real workflow mistakes and calibrates
+                        what your AI workflow is allowed to release automatically.
+                    </p>
+
+                    <p>
+                        The guarantee is concrete: once calibrated, EyeTrustAI controls the mistake rate among the AI
+                        outputs and actions released automatically, under the mistake budget you define. If the budget
+                        is 5%, the Risk Gate learns which outputs and actions can be released automatically while
+                        keeping the mistake rate of those releases within that budget.
+                    </p>
+
+                    <div class="feature-grid">
+                        <article class="card">
+                            <span class="eyebrow">Step 1</span>
+                            <h3>Define the mistake budget</h3>
+                            <p>A Risk Contract makes the target explicit: what counts as a mistake, what evidence is required, and what mistake rate is acceptable for automatic release.</p>
+                        </article>
+                        <article class="card">
+                            <span class="eyebrow">Step 2</span>
+                            <h3>Calibrate from real mistakes</h3>
+                            <p>During warm-up, labeled workflow events become the calibration set. EyeTrustAI uses conformal risk control to learn the release boundary for that deployment.</p>
+                        </article>
+                        <article class="card">
+                            <span class="eyebrow">Step 3</span>
+                            <h3>Release only what is certified</h3>
+                            <p>When an output or action is inside the calibrated release boundary, it can proceed automatically. When it is not, EyeTrustAI returns DEFER, ESCALATE, or BLOCK with a reason and an audit trail.</p>
+                        </article>
+                    </div>
+                </div>
+            </section>
+
+            <section class="split-section">
+                <div class="sticky-col">
+                    <span class="eyebrow">What EyeTrustAI adds</span>
+                    <h2 class="section-title">
+                        A runtime control layer, not another workflow builder.
+                    </h2>
+                </div>
+
+                <div class="content-col">
+                    <p class="section-intro">
+                        EyeTrustAI is the runtime control layer behind the Risk Gate: it observes guarded events,
+                        applies Risk Contracts, uses calibration when available, and returns decisions your workflow
+                        can route.
+                    </p>
+
+                    <div class="feature-grid">
+                        <article class="card">
+                            <h3>Risk Contracts</h3>
+                            <p>Define what counts as a mistake and what mistake budget applies to automatic release.</p>
+                        </article>
+                        <article class="card">
+                            <h3>Guarded Events</h3>
+                            <p>Capture inputs, outputs, actions, context, evidence, and later labels.</p>
+                        </article>
+                        <article class="card">
+                            <h3>Conformal Risk Control</h3>
+                            <p>Turn real workflow mistakes into calibrated rules for what can be released automatically.</p>
+                        </article>
+                        <article class="card">
+                            <h3>Evidence-seeking DEFER</h3>
+                            <p>Ask the workflow for missing evidence before retrying automatic release.</p>
+                        </article>
+                        <article class="card">
+                            <h3>Audit Trail</h3>
+                            <p>Record decision, evidence, contract version, calibration version, and label status.</p>
+                        </article>
+                        <article class="card">
+                            <h3>Module Registry</h3>
+                            <p>Install reusable risk-control modules from EyeTrustAI, your team, or partners.</p>
+                        </article>
+                    </div>
+                </div>
+            </section>
+
+            <section class="split-section" id="modules">
+                <div class="sticky-col">
+                    <span class="eyebrow">Risk Modules</span>
+                    <h2 class="section-title">
+                        Reusable modules. Calibrated guarantees.
+                    </h2>
+                </div>
+
+                <div class="content-col">
+                    <p class="section-intro">
+                        Risk Modules package the contract, event schema, evidence requirements, labeling protocol,
+                        scoring logic, and decision routes for a class of AI workflow. Install a module, calibrate it
+                        on your deployment, and reuse it across orchestrators.
+                    </p>
+
+                    <div class="principle-card">
+                        <h3>Modules are reusable. Guarantees are deployment-scoped.</h3>
+                        <p>
+                            A module can be shared, sold, or kept private. The guarantee becomes active only after
+                            calibration on the workflow, data, model, evidence, and mistake definition where it runs.
+                        </p>
+                    </div>
+
+                    <div class="module-grid">
+                        <article class="card module-card">
+                            <span class="module-kind">Open</span>
+                            <h3>Open modules</h3>
+                            <p>Reusable templates for common AI workflow risk patterns.</p>
+                        </article>
+                        <article class="card module-card">
+                            <span class="module-kind">Private</span>
+                            <h3>Private team modules</h3>
+                            <p>Internal contracts and evidence logic for company-specific workflows.</p>
+                        </article>
+                        <article class="card module-card">
+                            <span class="module-kind">Gated</span>
+                            <h3>Gated partner modules</h3>
+                            <p>Controlled access for sensitive, specialized, or partner-maintained modules.</p>
+                        </article>
+                        <article class="card module-card">
+                            <span class="module-kind">Commercial</span>
+                            <h3>Commercial modules</h3>
+                            <p>A future path for experts and consultants to distribute risk-control logic.</p>
+                        </article>
+                    </div>
+
+                    <p class="principle-line" style="text-align:left; margin-left:0;">
+                        Module Registry coming as early pilots develop.
+                    </p>
+                </div>
+            </section>
+
+            <section class="split-section">
+                <div class="sticky-col">
+                    <span class="eyebrow">Official modules</span>
+                    <h2 class="section-title">
+                        The first reusable Risk Modules we are building.
+                    </h2>
+                </div>
+
+                <div class="content-col">
+                    <p class="section-intro">
+                        These modules are reference implementations of one platform logic. They are not separate
+                        architectures; each one uses the same Risk Contract, Guarded Event, calibration, decision, and audit model.
+                    </p>
+
+                    <div class="official-grid">
+                        <article class="card">
+                            <span class="eyebrow">Generated answers</span>
+                            <h3>Generic LLM Answer Risk</h3>
+                            <p>For support, document QA, and generated responses.</p>
+                        </article>
+                        <article class="card">
+                            <span class="eyebrow">Evidence workflows</span>
+                            <h3>RAG Evidence Risk</h3>
+                            <p>For answers that must be grounded in retrieved evidence.</p>
+                        </article>
+                        <article class="card">
+                            <span class="eyebrow">Agentic coding</span>
+                            <h3>Coding Agent Action Risk</h3>
+                            <p>For file edits, commands, tests, and repository actions.</p>
+                        </article>
+                        <article class="card">
+                            <span class="eyebrow">High-stakes recommendations</span>
+                            <h3>Clinical / Enterprise Evidence Risk</h3>
+                            <p>For simulated evidence workflows where missing context should trigger defer or escalation.</p>
+                        </article>
+                        <article class="card">
+                            <span class="eyebrow">Automation platforms</span>
+                            <h3>Workflow Routing Templates</h3>
+                            <p>Example routes for PROCEED, DEFER, ESCALATE, and BLOCK inside common orchestrator patterns.</p>
+                        </article>
+                        <article class="card">
+                            <span class="eyebrow">Module authors</span>
+                            <h3>Module Starter Kit</h3>
+                            <p>A package format for contracts, event schemas, labeling protocols, examples, and tests.</p>
+                        </article>
+                    </div>
+                </div>
+            </section>
+
+            <section class="split-section">
+                <div class="sticky-col">
+                    <span class="eyebrow">Built for workflow builders</span>
+                    <h2 class="section-title">
+                        Use your stack. Add a calibrated Risk Gate.
+                    </h2>
+                </div>
+
+                <div class="content-col">
+                    <p class="section-intro">
+                        You should not need to rewrite your workflow to get calibrated risk control. EyeTrustAI is
+                        designed to plug into the stack you already use.
+                    </p>
+
+                    <div class="audience-grid">
+                        <article class="card"><h3>AI automation builders</h3><p>Add risk routing to AI-powered business processes.</p></article>
+                        <article class="card"><h3>Agent developers</h3><p>Control consequential tool calls before they happen.</p></article>
+                        <article class="card"><h3>Platform teams</h3><p>Give internal AI workflows a shared governance layer.</p></article>
+                        <article class="card"><h3>Module authors</h3><p>Package reusable risk-control logic for others to install.</p></article>
+                    </div>
+
+                    <div class="platform-list" aria-label="Example workflow platforms and patterns">
+                        <span class="tag">n8n</span>
+                        <span class="tag">Zapier</span>
+                        <span class="tag">Make</span>
+                        <span class="tag">Workato</span>
+                        <span class="tag">LangGraph</span>
+                        <span class="tag">Temporal</span>
+                        <span class="tag">Airflow</span>
+                        <span class="tag">MCP-enabled agents</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="split-section" id="faq">
+                <div class="sticky-col">
+                    <span class="eyebrow">FAQ</span>
+                    <h2 class="section-title">
+                        Automatic release guarantees, operationally scoped.
+                    </h2>
+                </div>
+
+                <div class="content-col">
+                    <div class="faq-grid">
+                        <article class="card faq-item">
+                            <h3>What exactly does EyeTrustAI guarantee?</h3>
+                            <p>EyeTrustAI does not guarantee that an AI model is always correct. It guarantees automatic release control: for a defined workflow, mistake definition, calibration set, and mistake budget, EyeTrustAI controls the mistake rate among the AI outputs and actions it allows to be released automatically. Outputs and actions that cannot be certified are deferred, escalated, or blocked instead.</p>
+                        </article>
+                        <article class="card faq-item">
+                            <h3>Is EyeTrustAI an orchestrator?</h3>
+                            <p>No. You keep your orchestrator. EyeTrustAI is the Risk Gate inside the workflow.</p>
+                        </article>
+                        <article class="card faq-item">
+                            <h3>Is EyeTrustAI a Risk Gate or a control layer?</h3>
+                            <p>Users plug EyeTrustAI into workflows as a Risk Gate. Under the hood, EyeTrustAI provides the runtime control layer that applies Risk Contracts, calibrates risk, evaluates evidence, records audit trails, and returns decisions your workflow can route.</p>
+                        </article>
+                        <article class="card faq-item">
+                            <h3>Is this another guardrail?</h3>
+                            <p>Not exactly. Guardrails usually enforce predefined rules. EyeTrustAI learns a calibrated release boundary from real workflow mistakes, then uses that boundary to decide when AI can proceed, defer, escalate, or block.</p>
+                        </article>
+                        <article class="card faq-item">
+                            <h3>Does it work before calibration?</h3>
+                            <p>Yes, in advisory/warm-up mode. Automatic release guarantees activate only after enough deployment-specific labels exist.</p>
+                        </article>
+                        <article class="card faq-item">
+                            <h3>Can modules be reused across companies?</h3>
+                            <p>Yes. Module logic can be reused. Guarantees are calibrated for each deployment unless a shared population is explicitly certified.</p>
+                        </article>
+                        <article class="card faq-item">
+                            <h3>Can this run privately?</h3>
+                            <p>The first version is API/SaaS-first. Local, private, and enterprise deployment paths are planned pilot options for teams with sensitive workflows.</p>
+                        </article>
+                    </div>
+                </div>
+            </section>
+
+            <section class="split-section" id="team">
+                <div class="sticky-col">
+                    <span class="eyebrow">Founding Team</span>
+                    <h2 class="section-title">
+                        High-stakes workflow expertise meets machine learning reliability.
+                    </h2>
+                </div>
+
+                <div class="content-col">
+                    <div class="team-wrapper">
+                        <div class="team-grid">
+                            <article class="team-member">
+                                <div class="portrait-frame">
+                                    <img
+                                        src="https://static.wixstatic.com/media/a5c057_9d05e53e1d44447e90a99f6d9c346c2d~mv2.png"
+                                        alt="Mariya Erokhina, CEO"
+                                        class="portrait-image"
+                                    />
+                                </div>
+                                <span class="member-name">Mariya Erokhina</span>
+                                <span class="member-role">CEO</span>
+                            </article>
+
+                            <article class="team-member">
+                                <div class="portrait-frame">
+                                    <img
+                                        src="https://static.wixstatic.com/media/a5c057_8b1587b606d4418896db611183b599c6~mv2.png"
+                                        alt="Alejandro Sanchez Guinea, Chief Scientist"
+                                        class="portrait-image"
+                                    />
+                                </div>
+                                <span class="member-name">Alejandro Sanchez Guinea</span>
+                                <span class="member-role">Chief Scientist</span>
+                            </article>
+                        </div>
+
+                        <div class="team-description">
+                            <h3>
+                                Built for consequential AI workflows.
+                            </h3>
+
+                            <p>
+                                EyeTrustAI combines frontline experience in high-stakes decision workflows with
+                                deep expertise in uncertainty, reliability, and safety in machine learning.
+                            </p>
+
+                            <p>
+                                That combination shapes the product: mathematically grounded, deployment-oriented,
+                                and built for teams who need AI systems to know when to proceed, defer, escalate, or block.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="final-cta">
+                <span class="eyebrow">Pilot waitlist</span>
+
+                <h2>
+                    Become one of the first EyeTrustAI design partners.
+                </h2>
+
+                <p>
+                    We are looking for AI teams, workflow builders, agent developers, and high-stakes automation teams interested in piloting EyeTrustAI as we build the first Risk Modules and orchestration adapters.
+                </p>
+
+                <div class="cta-row">
+                    <a href="https://tally.so/r/PdkWx0" class="primary-button">
+                        Join pilot waitlist
+                    </a>
+                    <a href="mailto:info@eyetrustai.com" class="secondary-button">
+                        Email info@eyetrustai.com
+                    </a>
+                </div>
+            </section>
+
+        </main>
+
+        <footer>
+            <div class="footer-brand">
+                <img
+                    src="https://static.wixstatic.com/media/a5c057_37550585d1ca485593c6fc805ca39a69~mv2.png"
+                    alt="EyeTrustAI logo"
+                    class="footer-logo"
+                />
+                <span>&copy; 2026 EyeTrustAI</span>
+            </div>
+
+            <div class="footer-links">
+                <a href="mailto:info@eyetrustai.com">Email</a>
+                <a href="https://tally.so/r/PdkWx0">Pilot waitlist</a>
+                <a href="https://www.linkedin.com/in/mariya-erokhina/" target="_blank" rel="noopener noreferrer">
+                    LinkedIn
+                </a>
+            </div>
+        </footer>
+
+    </div>
+</body>
+</html>
