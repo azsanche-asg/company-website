@@ -1,0 +1,40 @@
+/* Approved concise applications section. Homepage only; no script required. */
+.home-applications .section-head { margin-bottom: 34px; }
+.home-applications .section-head h2 { max-width: none; }
+.home-applications-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+.home-application {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 0;
+  min-height: 196px;
+  padding: 26px;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  background: var(--white);
+  color: var(--ink);
+  text-decoration: none;
+}
+.home-application:hover { border-color: #a6abb0; }
+.home-application h3 { margin: 0 0 16px; min-height: 2.5em; font-size: 22px; font-weight: 500; line-height: 1.25; letter-spacing: -.028em; }
+.home-application p { margin: 0; color: var(--muted); font-size: 16px; line-height: 1.65; }
+.home-application .application-last-word { white-space: nowrap; }
+.home-application .application-arrow { display: inline-block; margin-left: 3px; color: #737b81; font-size: 15px; font-weight: 400; vertical-align: baseline; }
+.home-application-invitation { background: #eef0f1; }
+.home-application-invitation h3 { min-height: 0; margin-bottom: 13px; }
+.home-application .application-contact { margin-top: auto; padding-top: 18px; font-size: 14px; line-height: 1.4; font-weight: 500; }
+@media (max-width: 1100px) {
+  .home-applications-grid { gap: 16px; }
+  .home-application { padding: 24px; }
+  .home-application h3 { font-size: 20px; }
+  .home-application p { font-size: 15px; }
+}
+@media (max-width: 960px) {
+  .home-applications-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 600px) {
+  .home-applications .section-head { margin-bottom: 26px; }
+  .home-applications-grid { grid-template-columns: minmax(0, 1fr); gap: 14px; }
+  .home-application { min-height: 0; }
+  .home-application h3 { min-height: 0; margin-bottom: 12px; }
+}

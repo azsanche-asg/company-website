@@ -1,0 +1,100 @@
+  .home-ending {
+    --et-paper: #f9f9f9;
+    --et-ink: #111214;
+    --et-muted: #606267;
+    --et-line: #d9dcdf;
+    --et-wash: #eef0f2;
+    --et-button: #111214;
+    --et-button-ink: #ffffff;
+    --et-dark: #1e2327;
+    --et-dark-ink: #f9f9f9;
+    --et-dark-muted: #b9c0c6;
+    --et-dark-line: #4a5157;
+    background: var(--et-paper);
+    color: var(--et-ink);
+    font: 400 14px/1.55 Inter, Arial, sans-serif;
+    text-align: left;
+  }
+  .home-ending * { box-sizing: border-box; }
+  .home-ending h2, .home-ending h3, .home-ending p,
+  .home-ending figure, .home-ending ul { margin: 0; }
+  .home-ending a { color: inherit; text-decoration: none; }
+  .home-ending a:hover { text-decoration: underline; text-underline-offset: 4px; }
+  .home-ending a:focus-visible { outline: 2px solid currentColor; outline-offset: 4px; }
+  .home-ending .et-inner { margin-inline: auto; }
+  .home-ending .et-kicker,
+  .home-ending .et-label,
+  .home-ending .et-meta { font: 400 11px/1.5 Plex, monospace; }
+  .home-ending .et-kicker,
+  .home-ending .et-label { letter-spacing: .07em; text-transform: uppercase; }
+  .home-ending .et-kicker { color: var(--et-muted); margin-bottom: 14px; }
+  .home-ending .et-label { color: var(--et-muted); margin-bottom: 15px; }
+  .home-ending h2 { font: 500 30px/1.17 Inter, Arial, sans-serif; letter-spacing: -.045em; }
+  .home-ending .et-link { display: inline-flex; align-items: center; gap: 8px; padding-bottom: 5px; border-bottom: 1px solid var(--et-line); font-size: 13px; font-weight: 500; }
+  .home-ending .et-link .et-arrow,
+  .home-ending .et-study .et-arrow { width: 15px; height: 15px; flex: 0 0 15px; }
+  .home-ending .et-science { background: var(--et-dark); color: var(--et-dark-ink); padding-block: 40px 34px; }
+  .home-ending .et-science .et-kicker,
+  .home-ending .et-science .et-label,
+  .home-ending .et-science .et-meta { color: var(--et-dark-muted); }
+  .home-ending .et-science h2,
+  .home-ending .et-science h3 { color: var(--et-dark-ink); }
+  .home-ending .et-research-grid { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 28px 32px; margin-top: 30px; }
+  .home-ending .et-paper { display: block; padding: 13px 0 15px; border-top: 1px solid var(--et-dark-line); }
+  .home-ending .et-meta { display: block; margin-bottom: 8px; letter-spacing: 0; }
+  .home-ending .et-paper-title { display: block; font-size: 15px; line-height: 1.45; letter-spacing: -.015em; }
+  .home-ending .et-study { display: flex; align-items: center; justify-content: space-between; gap: 12px; border-top: 1px solid var(--et-dark-line); padding-block: 13px; font-size: 13px; }
+  .home-ending .et-study:last-child { border-bottom: 1px solid var(--et-dark-line); }
+  .home-ending .et-study .et-arrow { color: var(--et-dark-muted); }
+  .home-ending .et-science .et-link { border-color: var(--et-dark-line); }
+  .home-ending .et-research-links { display: flex; flex-wrap: wrap; gap: 14px 30px; margin-top: 24px; }
+  .home-ending .et-vision { padding-top: 38px; }
+  .home-ending .et-offerings { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px; margin-top: 28px; }
+  .home-ending .et-offering { display: flex; flex-direction: column; border-top: 1px solid var(--et-line); padding-top: 20px; }
+  .home-ending .et-offering h3 { font-size: 22px; line-height: 1.2; letter-spacing: -.035em; font-weight: 500; }
+  .home-ending .et-offering p:not(.et-label) { margin-top: 12px; margin-bottom: 19px; color: var(--et-muted); }
+  .home-ending .et-offering .et-link { align-self: flex-start; margin-top: auto; }
+  .home-ending .et-team { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); gap: 32px; align-items: start; border-top: 1px solid var(--et-line); padding-block: 36px; margin-top: 34px; }
+  .home-ending .et-team-heading .et-link { margin-top: 16px; }
+  .home-ending .et-team-title { font-size: 25px; line-height: 1.2; letter-spacing: -.035em; font-weight: 500; }
+  .home-ending .et-portraits { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px; }
+  .home-ending .et-founder { min-width: 0; }
+  .home-ending .et-founder img { display: block; width: 50%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; object-position: center top; border-radius: 2px; }
+  .home-ending .et-founder figcaption { margin-top: 12px; font-size: 14px; line-height: 1.4; }
+  .home-ending .et-founder .et-role { display: block; color: var(--et-muted); margin-top: 4px; font-size: 12px; }
+  .home-ending .et-contact { background: var(--et-wash); border-top: 1px solid var(--et-line); padding-block: 25px; }
+  .home-ending .et-contact-inner { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+  .home-ending .et-contact h2 { font-size: 25px; }
+  .home-ending .et-contact p { color: var(--et-muted); font-size: 13px; margin-top: 7px; }
+  .home-ending .et-button { display: inline-flex; align-items: center; gap: 20px; flex-shrink: 0; padding: 13px 18px; color: var(--et-button-ink); background: var(--et-button); border-radius: 4px; font-size: 13px; font-weight: 500; }
+  .home-ending .et-button .et-arrow { width: 16px; height: 16px; }
+  .home-ending .et-footer { padding-block: 17px; border-top: 1px solid var(--et-line); }
+  .home-ending .et-footer-inner { display: flex; justify-content: space-between; gap: 20px; }
+  .home-ending .et-brand { font-size: 14px; font-weight: 500; letter-spacing: -.035em; }
+  .home-ending .et-footer-links { display: flex; flex-wrap: wrap; gap: 8px 16px; font-size: 11px; color: var(--et-muted); }
+  @media (min-width: 960px) {
+    .home-ending h2 { font-size: 36px; }
+    .home-ending .et-research-grid { grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: 64px; }
+    .home-ending .et-offerings { gap: 64px; }
+    .home-ending .et-offering h3 { font-size: 25px; }
+    .home-ending .et-team { gap: 64px; }
+    .home-ending .et-contact h2 { font-size: 28px; }
+  }
+  @media (max-width: 760px) {
+    .home-ending .et-team { grid-template-columns: minmax(0, 1fr); gap: 28px; }
+    .home-ending .et-founder img { width: 100%; }
+    .home-ending .et-team-heading { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+    .home-ending .et-team-heading .et-link { margin-top: 0; }
+    .home-ending .et-team-title { font-size: 22px; }
+  }
+  @media (max-width: 580px) {
+    .home-ending h2 { font-size: 28px; }
+    .home-ending .et-research-grid, .home-ending .et-offerings { grid-template-columns: minmax(0, 1fr); gap: 24px; }
+    .home-ending .et-team { padding-block: 28px; }
+    .home-ending .et-portraits { gap: 20px; }
+    .home-ending .et-contact-inner, .home-ending .et-footer-inner { flex-direction: column; align-items: flex-start; }
+    .home-ending .et-contact h2 { font-size: 24px; }
+  }
+  @media (pointer: coarse) {
+    .home-ending .et-link, .home-ending .et-footer-links a { min-height: 44px; align-content: center; }
+  }

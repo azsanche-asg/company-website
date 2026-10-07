@@ -1,0 +1,50 @@
+/* Visual explanation of risk control; scoped to the local homepage. */
+.home-risk-control { padding: 66px 0; background: #f0f1f2; }
+.home-risk-control .section-head { margin-bottom: 34px; }
+.home-risk-control .section-head h2 { max-width: none; }
+.risk-control-steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 36px; list-style: none; padding: 0; margin: 0; }
+.risk-control-steps > li { min-width: 0; border-top: 1px solid #cdd0d3; padding-top: 20px; }
+.risk-control-steps .risk-step-number { display: block; color: #606267; font-size: 11px; line-height: 1.5; letter-spacing: .055em; text-transform: uppercase; }
+.risk-control-steps h3 { margin: 14px 0 12px; font-size: 23px; line-height: 1.25; letter-spacing: -.028em; }
+.risk-control-steps p { margin: 0; font-size: 16px; line-height: 1.65; color: var(--muted); }
+.risk-limit-key { display: flex; align-items: center; gap: 12px; margin-top: 24px; font-size: 14px; font-weight: 500; }
+.risk-limit-key::before { content: ""; width: 40px; flex: 0 0 40px; border-top: 2px dashed #606267; }
+.risk-samples { display: grid; grid-template-columns: repeat(8, minmax(0, 1fr)); gap: 6px; max-width: 340px; margin: 24px 0 12px; }
+.risk-sample { display: grid; place-items: center; aspect-ratio: 1; border-radius: 3px; background: #fafafa; color: #606267; font-size: 14px; line-height: 1; }
+.risk-sample.risk-sample-error { background: #111214; color: #fff; font-size: 20px; }
+.risk-sample-legend { display: flex; gap: 20px; color: #606267; font-size: 13px; }
+.risk-sample-legend > span { display: inline-flex; align-items: center; gap: 7px; }
+.risk-bound-chart { position: relative; height: 263px; margin-top: 24px; }
+.risk-chart-axis { position: absolute; top: 0; left: 0; color: #606267; font-size: 11px; line-height: 1.5; letter-spacing: .075em; text-transform: uppercase; }
+.risk-chart-axis-rule { position: absolute; top: 36px; bottom: 15px; left: 4px; width: 1px; background: #cdd0d3; }
+.risk-chart-threshold { position: absolute; top: 62px; left: 19px; right: 0; border-top: 2px dashed #606267; }
+.risk-chart-threshold-label { position: absolute; top: 35px; right: 0; font-size: 14px; font-weight: 500; }
+.risk-chart-uncertainty { position: absolute; top: 81px; height: 142px; left: 44px; width: 45px; background: #d8dce0; }
+.risk-chart-bound { position: absolute; top: 80px; left: 35px; width: 63px; height: 2px; background: #111214; }
+.risk-chart-observed { position: absolute; top: 215px; left: 60px; width: 13px; height: 13px; background: #111214; border-radius: 50%; }
+.risk-chart-bound-label, .risk-chart-observed-label, .risk-chart-margin-label { position: absolute; left: 118px; right: 0; font-size: 14px; line-height: 1.4; }
+.risk-chart-bound-label { top: 78px; font-weight: 500; }
+.risk-chart-bound-label span { display: block; margin-top: 4px; font-size: 12px; color: #606267; font-weight: 400; }
+.risk-chart-margin-label { top: 159px; font-size: 12px; color: #606267; }
+.risk-chart-observed-label { top: 204px; color: #606267; }
+.risk-control-method { display: flex; justify-content: space-between; align-items: center; gap: 24px; margin-top: 30px; padding-top: 22px; border-top: 1px solid #cdd0d3; }
+.risk-control-method p { margin: 0; font-size: 15px; font-weight: 500; }
+.home-risk-control .risk-control-link { margin: 0; font-size: 14px; gap: 8px; flex-shrink: 0; }
+@media (max-width: 1100px) {
+  .risk-control-steps { grid-template-columns: minmax(0, .92fr) minmax(0, 1.25fr); gap: 28px 46px; }
+  .risk-control-steps > li:nth-child(3) { grid-column: 2; grid-row: 1 / span 2; }
+  .risk-control-steps h3 { font-size: 21px; }
+  .risk-control-steps p { font-size: 15px; }
+}
+@media (max-width: 760px) {
+  .home-risk-control { padding: 48px 0; }
+  .home-risk-control .section-head { margin-bottom: 28px; }
+  .risk-control-steps { grid-template-columns: minmax(0, 1fr); gap: 28px; }
+  .risk-control-steps > li:nth-child(3) { grid-column: auto; grid-row: auto; }
+  .risk-bound-chart { max-width: 400px; }
+  .risk-control-method { flex-direction: column; align-items: flex-start; gap: 16px; margin-top: 20px; }
+}
+@media (max-width: 370px) {
+  .risk-chart-bound-label, .risk-chart-observed-label, .risk-chart-margin-label { left: 105px; font-size: 13px; }
+  .risk-chart-margin-label { font-size: 11px; }
+}
