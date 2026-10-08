@@ -1,0 +1,4 @@
+/* Optional context for social enquiries; generic form layout is unchanged. */
+.social-contact-fields[hidden] { display:none; }
+.social-contact-fields { display:grid; gap:22px; }
+.contact-intro[data-social="true"] h1 { font-size:clamp(32px,3.5vw,48px); }

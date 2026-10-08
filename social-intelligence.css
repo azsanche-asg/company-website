@@ -1,0 +1,142 @@
+/* Focused social solution page and its entry in Solutions. No shared overrides. */
+.social-hero { padding: 26px 0 0; }
+.social-back { display: inline-flex; align-items: center; min-height: 32px; font-size: 12px; color: var(--muted); margin-bottom: 28px; }
+.social-back:hover { color: var(--ink); text-decoration: underline; text-underline-offset: 4px; }
+.social-hero-grid { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 64px; }
+.social-hero-copy { min-width: 0; }
+.social-hero-copy > .eyebrow { font-size: 11px; }
+.social-hero-copy h1 { font-size: 44px; line-height: 1.15; letter-spacing: -.045em; margin: 22px 0 25px; }
+.social-hero-copy h1 > span { display: block; margin-top: 5px; color: #686c70; }
+.social-hero-copy .lead { max-width: 480px; font-size: 17px; line-height: 1.75; }
+.social-hero-copy .actions { margin-top: 28px; gap: 12px; }
+.social-science-link { display: inline-flex; align-items: center; gap: 10px; font-size: 12px; color: #5d6266; margin-top: 25px; min-height: 36px; }
+.social-science-link > span:first-child { font-size: 22px; color: var(--ink); }
+.social-science-link:hover { color: var(--ink); }
+.social-workspace { margin: 0; min-width: 0; background: #fff; border: 1px solid #d4d7da; border-radius: 8px; box-shadow: 0 18px 45px -34px #18202866; overflow: hidden; }
+.social-workspace-head { display: flex; justify-content: space-between; align-items: center; gap: 14px; padding: 17px 22px; border-bottom: 1px solid var(--line); }
+.social-workspace-name { display: inline-flex; align-items: center; gap: 10px; font-size: 13px; font-weight: 500; }
+.social-example-label { font-family: Plex, monospace; font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: .05em; }
+.social-mention-icon { width: 17px; height: 13px; border: 1px solid #6c747a; border-radius: 2px; position: relative; }
+.social-mention-icon::after { content: ''; position: absolute; width: 4px; height: 4px; bottom: -3px; left: 3px; border-left: 1px solid #6c747a; border-bottom: 1px solid #6c747a; background: #fff; transform: skewY(-30deg); }
+.social-workspace-body { padding: 23px; }
+.social-queue-heading { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 12px; }
+.social-queue-heading h2 { font-size: 14px; font-weight: 500; letter-spacing: -.01em; }
+.social-queue-heading > span:not(.social-status-dot) { font-size: 11px; color: #687078; }
+.social-status-dot { width: 6px; height: 6px; background: #353d43; border-radius: 50%; }
+.social-queue-secondary { margin-top: 23px; }
+.social-mention { border: 1px solid #dce0e3; border-radius: 5px; padding: 18px; }
+.social-mention-priority { border-left: 3px solid #54636f; background: #f4f6f7; padding-left: 16px; }
+.social-mention-meta { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px; font-size: 10px; color: #586570; }
+.social-mention-meta > span:last-child:not(:first-child) { border: 1px solid #c6cfd5; padding: 2px 7px; border-radius: 3px; }
+.social-post { margin: 12px 0 17px; font-size: 15px; line-height: 1.65; color: #252d33; }
+.social-handling { display: flex; align-items: center; gap: 8px; color: #59636b; font-size: 11px; }
+.social-person-icon { height: 6px; width: 12px; border: 1px solid #78838b; border-bottom: 0; border-radius: 6px 6px 0 0; position: relative; margin-top: 7px; }
+.social-person-icon::before { content: ''; position: absolute; height: 5px; width: 5px; border: 1px solid #78838b; border-radius: 50%; top: -9px; left: 2px; }
+.social-retained-icon { font-size: 14px; line-height: 1; }
+.social-workspace figcaption { border-top: 1px solid var(--line); padding: 12px 22px; font-size: 10px; color: #677078; background: #fafbfb; }
+.social-workflow-note { display: flex; align-items: center; justify-content: space-between; gap: 24px; margin-top: 42px; padding: 22px 0; border-top: 1px solid var(--line); }
+.social-workflow-note p { font-size: 13px; }
+.social-workflow-note strong { font-weight: 400; color: var(--ink); }
+.social-workflow-note .text-link { flex-shrink: 0; font-size: 12px; gap: 10px; }
+.social-evidence { background: #1c2024; color: #f8f9fa; padding: 64px 0; }
+.social-evidence-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 90px; align-items: center; }
+.social-evidence .eyebrow { color: #b9c1c7; font-size: 10px; }
+.social-evidence-copy h2 { font-size: 34px; line-height: 1.2; margin: 18px 0 23px; }
+.social-evidence-copy > p:not(.eyebrow) { font-size: 15px; line-height: 1.75; color: #c0c7cd; max-width: 460px; }
+.social-evidence-copy > p + p { margin-top: 12px; }
+.social-evidence .text-link { color: #f5f6f7; border-color: #657079; font-size: 13px; gap: 12px; margin-top: 23px; }
+.social-evidence .text-link:hover { border-color: #fff; }
+.social-evidence a:focus-visible { outline-color: #fff; }
+.social-study { border: 1px solid #505b64; background: #252b30; border-radius: 6px; padding: 26px; }
+.social-study-top { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-bottom: 19px; border-bottom: 1px solid #48535c; }
+.social-study-dataset { font-family: Plex, monospace; font-size: 11px; color: #c7ced4; }
+.social-study h3 { font-size: 24px; line-height: 1.25; margin: 23px 0 15px; }
+.social-study > p { font-size: 14px; color: #c0c7cd; line-height: 1.7; }
+.social-study > .social-study-scope { border-top: 1px solid #48535c; margin-top: 23px; padding-top: 16px; font-size: 11px; color: #b9c1c7; }
+.social-contact { padding: 55px 0; }
+.social-contact-inner { display: flex; justify-content: space-between; align-items: center; gap: 36px; }
+.social-contact .eyebrow { font-size: 10px; }
+.social-contact h2 { font-size: 31px; margin: 13px 0 12px; }
+.social-contact p:not(.eyebrow) { font-size: 15px; }
+.social-contact .button { flex-shrink: 0; }
+.social-footer { border-top: 1px solid var(--line); padding: 18px 0; }
+.social-footer-inner { display: flex; justify-content: space-between; align-items: center; gap: 24px; }
+.social-footer-brand { font-size: 14px; font-weight: 600; letter-spacing: -.04em; }
+.social-footer nav { display: flex; flex-wrap: wrap; gap: 12px 22px; font-size: 11px; color: var(--muted); }
+.social-footer a:hover { color: var(--ink); text-decoration: underline; text-underline-offset: 4px; }
+.social-solution-entry { background: #f0f2f3; padding: 62px 0; }
+.social-entry-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+.social-entry-grid .eyebrow { font-size: 11px; }
+.social-entry-grid h2 { font-size: 34px; line-height: 1.2; max-width: 490px; margin-top: 18px; }
+.social-entry-grid .lead { font-size: 17px; max-width: 450px; }
+.social-entry-grid .actions { margin-top: 24px; gap: 22px; }
+.social-entry-grid .text-link { gap: 10px; font-size: 13px; }
+@media (max-width: 1100px) {
+  .social-hero-grid { gap: 36px; }
+  .social-hero-copy h1 { font-size: 39px; }
+  .social-evidence-grid { gap: 44px; }
+  .social-entry-grid { gap: 40px; }
+}
+@media (max-width: 900px) {
+  .social-hero-grid { grid-template-columns: 1fr; gap: 34px; }
+  .social-hero-copy h1 { font-size: 44px; }
+  .social-workspace { width: 100%; }
+  .social-evidence-grid { gap: 32px; }
+  .social-entry-grid { grid-template-columns: 1fr; gap: 23px; }
+  .social-entry-grid h2, .social-entry-grid .lead { max-width: 600px; }
+}
+@media (max-width: 760px) {
+  .social-hero { padding-top: 17px; }
+  .social-back { margin-bottom: 20px; min-height: 40px; }
+  .social-hero-copy > .eyebrow { font-size: 10px; }
+  .social-hero-copy h1 { font-size: 37px; margin: 19px 0 22px; }
+  .social-hero-copy h1 br { display: none; }
+  .social-hero-copy .lead { font-size: 16px; }
+  .social-science-link { font-size: 11px; min-height: 44px; }
+  .social-workspace-head { padding: 16px; }
+  .social-workspace-name { font-size: 12px; gap: 8px; }
+  .social-example-label { font-size: 9px; }
+  .social-workspace-body { padding: 18px 16px; }
+  .social-mention { padding: 15px; }
+  .social-mention-priority { padding-left: 13px; }
+  .social-post { font-size: 14px; }
+  .social-workspace figcaption { padding: 12px 16px; }
+  .social-workflow-note { align-items: flex-start; flex-direction: column; gap: 12px; margin-top: 28px; padding: 22px 0; }
+  .social-workflow-note strong { display: block; }
+  .social-workflow-note .text-link { min-height: 40px; }
+  .social-evidence { padding: 43px 0; }
+  .social-evidence-grid { grid-template-columns: 1fr; gap: 32px; }
+  .social-evidence-copy h2 { font-size: 30px; }
+  .social-evidence .text-link { min-height: 40px; }
+  .social-study { padding: 22px; }
+  .social-study h3 { font-size: 23px; }
+  .social-study h3 br { display: none; }
+  .social-contact { padding: 39px 0; }
+  .social-contact-inner { align-items: flex-start; flex-direction: column; gap: 22px; }
+  .social-contact h2 { font-size: 28px; }
+  .social-footer-inner { align-items: flex-start; flex-direction: column; gap: 10px; }
+  .social-footer nav { column-gap: 20px; align-items: center; }
+  .social-footer a, .social-footer nav > span { min-height: 36px; align-content: center; }
+  .social-solution-entry { padding: 44px 0; }
+  .social-entry-grid h2 { font-size: 30px; }
+  .social-entry-grid .lead { font-size: 16px; }
+}
+@media (max-width: 370px) {
+  .social-hero-copy h1 { font-size: 32px; }
+  .social-workspace-head { flex-wrap: wrap; gap: 7px; }
+  .social-science-link { gap: 8px; font-size: 10px; }
+  .social-hero-copy .button { font-size: 13px; gap: 16px; padding-inline: 15px; }
+}
+
+/* Social adoption: brief responsibilities, detail on demand. */
+.social-adoption { padding: 48px 0 0; }
+.social-adoption .eyebrow { font-size: 10px; }
+.social-adoption h2 { font-size: 31px; margin: 15px 0 26px; }
+.social-adoption-roles { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; }
+.social-adoption h3 { font-size: 18px; margin-bottom: 10px; }
+.social-adoption p { font-size: 14px; line-height: 1.75; max-width: 75ch; }
+.social-adoption details { margin-top: 26px; padding: 18px 0; border-block: 1px solid var(--line); }
+.social-adoption summary { cursor: pointer; font-size: 14px; }
+.social-adoption details p { margin-top: 14px; }
+.social-adoption .text-link { margin-top: 16px; font-size: 13px; }
+@media(max-width:760px) { .social-adoption { padding-top:38px; } .social-adoption h2 { font-size:28px; } .social-adoption-roles { grid-template-columns:1fr; gap:24px; } }

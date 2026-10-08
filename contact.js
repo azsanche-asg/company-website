@@ -1,11 +1,6 @@
 /* Preserve enquiry context and prepare a local draft without sending a message. */
 const form = document.querySelector('#contact-form');
-const topics = {
-  platform: 'Platform pilot',
-  solution: 'Domain solution',
-  research: 'Research',
-  other: 'General enquiry'
-};
+import { topics, isSocialEnquiry, prepareEnquiry } from './contact-message.mjs';
 const params = new URLSearchParams(window.location.search);
 const topic = params.get('topic');
 if (Object.hasOwn(topics, topic)) form.elements.topic.value = topic;
@@ -19,6 +14,36 @@ const message = form.elements.message;
 const name = form.elements.name;
 const copyButton = document.querySelector('#draft-copy');
 const copyStatus = document.querySelector('#copy-status');
+const intro = document.querySelector('.contact-intro');
+const title = intro.querySelector('h1');
+const lead = intro.querySelector('.lead');
+const hint = form.querySelector('.hint-solution');
+const messageLabel = document.querySelector('#message-label');
+const socialFields = document.querySelector('#social-context');
+const generic = { title: title.innerHTML, lead: lead.textContent, hint: hint.textContent,
+  placeholder: message.placeholder, button: button.innerHTML };
+function updateContext() {
+  const social = isSocialEnquiry({ topic: form.elements.topic.value, domain: form.elements.domain.value });
+  intro.dataset.social = String(social);
+  socialFields.hidden = !social;
+  for (const field of socialFields.querySelectorAll('input,select')) field.disabled = !social;
+  if (social) {
+    title.textContent = 'Let’s evaluate your listening workflow.';
+    lead.textContent = 'Tell us what you monitor and what your team reviews today. We can discuss the evidence needed to evaluate review effort and missed priority mentions.';
+    hint.textContent = 'A short description is enough to start. No dataset or technical specification needed here.';
+    messageLabel.textContent = 'What would you like to improve?';
+    message.placeholder = 'What do you monitor, which mentions need attention, and how does your team review them today?';
+    button.textContent = 'Prepare workflow enquiry ↗';
+  } else {
+    title.innerHTML = generic.title;
+    lead.textContent = generic.lead;
+    hint.textContent = generic.hint;
+    messageLabel.textContent = 'Your message';
+    message.placeholder = generic.placeholder;
+    button.innerHTML = generic.button;
+  }
+}
+updateContext();
 button.disabled = false;
 form.addEventListener('input', () => {
   name.setCustomValidity('');
@@ -26,27 +51,16 @@ form.addEventListener('input', () => {
   copyStatus.textContent = '';
   draft.hidden = true;
 });
-form.addEventListener('change', () => { draft.hidden = true; });
+form.addEventListener('change', () => { draft.hidden = true; updateContext(); });
 form.addEventListener('submit', event => {
   event.preventDefault();
   name.setCustomValidity(name.value.trim() ? '' : 'Please enter your name. Spaces alone are not a name.');
   message.setCustomValidity(message.value.trim().length < 20 ? 'Please write at least 20 characters about your enquiry.' : '');
   if (!form.reportValidity()) return;
   const values = new FormData(form);
-  const selectedTopic = values.get('topic');
-  const subject = `EyeTrustAI — ${topics[selectedTopic]}`;
-  const lines = [
-    `Enquiry: ${topics[selectedTopic]}`,
-    `Name: ${values.get('name').trim()}`,
-    `Reply email: ${values.get('email').trim()}`
-  ];
-  if (values.get('organisation').trim()) lines.push(`Organisation: ${values.get('organisation').trim()}`);
-  if (selectedTopic === 'solution' && values.get('domain')) {
-    lines.push(`Application: ${form.elements.domain.selectedOptions[0].text}`);
-  }
-  const body = `${lines.join('\n')}\n\n${message.value.trim()}`;
-  document.querySelector('#draft-text').textContent = `To: info@eyetrustai.com\nSubject: ${subject}\n\n${body}`;
-  document.querySelector('#draft-link').href = `mailto:info@eyetrustai.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  const enquiry = prepareEnquiry(Object.fromEntries(values), form.elements.domain.selectedOptions[0].text);
+  document.querySelector('#draft-text').textContent = enquiry.text;
+  document.querySelector('#draft-link').href = enquiry.href;
   draft.hidden = false;
   document.querySelector('#draft-title').focus();
 });
