@@ -10,13 +10,15 @@ The marketing pages use shared CSS. `contact.js` validates enquiries, prepares a
 
 The ten interactive demos under `demos/` expose website navigation on their chooser and application screens. `demo-navigation.css` styles the shared exits and responsive toolbar. The three embedded players reserve 56 px for the website navigation and retain their sandboxed application frames. Demo policies allow the necessary same-origin styles/assets; network connections and form submissions remain disabled.
 
-Fundus has a web edition with separately cached, unchanged image/font assets in `assets/fundus/`, plus a self-contained edition in `downloads/`. To regenerate the web edition after editing its offline source:
+The chest-X-ray, fundus and OCT walkthroughs serve unchanged research images from `demos/assets/imaging-batch1/`. Chest-X-ray images are NIH ChestX-ray14 examples; historical CheXpert benchmark results remain explicitly separate. The medical page, medical Research sections and contextual contact drafts accompany the three guided journeys.
+
+Fundus also retains its self-contained download at the existing URL. After updating the reviewed web walkthrough and its assets, refresh the download with:
 
 ```sh
-python3 tools/build_fundus_web.py
+python3 tools/build_fundus_offline.py
 ```
 
-The offline source embeds its navigation styles; keep that copy aligned with `demo-navigation.css` when changing shared demo styling. The builder preserves image bytes and writes their SHA-256 manifest. Research image provenance and workflow calculations remain unchanged.
+The offline builder embeds original image bytes and points website links to the live site. It never regenerates a web release from an outdated offline edition. Research-image provenance and workflow calculations remain unchanged.
 
 ## Publishing
 
