@@ -1,0 +1,62 @@
+/* Invoice claim and workload details. Scoped for the embedded demo and Research. */
+.invoice-evidence-kicker{font:10px/1.6 ui-monospace,monospace;text-transform:uppercase;letter-spacing:.06em;color:#53636f}
+.invoice-claim-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:17px;margin:22px 0}
+.invoice-claim{padding:22px;background:white;border:1px solid #d6dfe4;border-radius:7px;min-width:0}
+.invoice-claim>strong{display:block;font-size:34px;font-weight:500;letter-spacing:-.045em;margin:13px 0 10px;line-height:1.2;color:#26363f}
+.invoice-claim h2{font-size:14px;font-weight:600;letter-spacing:0;line-height:1.5;margin:0 0 10px}
+.invoice-claim p{font-size:12px;color:#5d6870;line-height:1.7;margin:0}
+.invoice-claim-simulated{background:#f3f6f8}
+.invoice-claim details{margin-top:14px;border-top:1px solid #d9e0e5;padding-top:12px;font-size:12px}
+.invoice-claim summary{cursor:pointer;color:#263d4b}
+.invoice-claim details p{margin-top:12px}
+.invoice-evidence-box{background:white;border:1px solid #d8e0e5;border-radius:7px;padding:24px;margin:20px 0;color:#27353e}
+.invoice-evidence-box h2{font-size:16px;font-weight:600;letter-spacing:-.015em;line-height:1.5;margin:0 0 20px}
+.invoice-evidence-box-head{display:flex;align-items:baseline;justify-content:space-between;gap:20px}
+.invoice-evidence-box h3,.invoice-details-body h3{font-size:13px;line-height:1.5;letter-spacing:0;margin:0 0 12px;font-weight:600;color:#293d49}
+.invoice-denominators{display:grid;grid-template-columns:1fr 1fr;gap:36px}
+.invoice-denominators>div+div{border-left:1px solid #dce3e7;padding-left:36px}
+.invoice-denominators p{font-size:12px;line-height:1.7;margin:14px 0 0;color:#5b6871}
+.invoice-fraction{display:flex;flex-direction:column;font-size:12px;line-height:1.7}
+.invoice-fraction>span{padding:10px 0;color:#3a4f5c}
+.invoice-fraction>span+span{border-top:1px solid #9fadb7}
+.invoice-fraction b{font-size:16px;font-weight:600}
+.invoice-evidence-box .invoice-evidence-foot,.invoice-details-body .invoice-evidence-foot{font-size:11px;line-height:1.7;color:#63717c;margin:19px 0 0}
+.invoice-evidence-details{border-top:1px solid #d9e1e6;margin:18px 0 0;padding:14px 0 0;font-size:13px}
+.invoice-evidence-details>summary{font-weight:500;cursor:pointer;min-height:28px;line-height:1.6;color:#344f60}
+.invoice-evidence-details>summary:focus-visible{outline:2px solid #5576a0;outline-offset:4px}
+.invoice-details-body{padding-top:14px;max-width:100%;font-size:13px;line-height:1.75;color:#51616d}
+.invoice-details-body p{font-size:13px;line-height:1.75;color:#51616d;margin:0 0 16px}
+.invoice-details-body h3:not(:first-child){margin-top:22px}
+.invoice-population-flow{list-style:none;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:22px;margin:0;padding:0}
+.invoice-population-flow li{position:relative;border-top:2px solid #a4b4bf;padding-top:15px;min-width:0}
+.invoice-population-flow li:not(:last-child)::after{content:'→';position:absolute;right:-18px;top:17px;color:#8295a1}
+.invoice-population-flow span{font-size:12px;line-height:1.6;display:block;min-height:39px}
+.invoice-population-flow strong{display:block;font-weight:500;font-size:23px;line-height:1.4;letter-spacing:-.03em;margin:9px 0}
+.invoice-population-flow small{font-size:11px;line-height:1.7;color:#62717b;display:block}
+.invoice-cost-columns{display:grid;grid-template-columns:1fr 1fr;gap:30px;margin-top:20px}
+.invoice-time-formula{padding:16px 20px;background:#eef3f6;border-left:2px solid #7c98a9;font-size:12px!important;line-height:1.9!important}
+.invoice-provenance{margin:0}
+.invoice-provenance>div{display:grid;grid-template-columns:220px 1fr;gap:24px;padding:14px 0;border-bottom:1px solid #e1e6e9}
+.invoice-provenance dt{font-size:12px;font-weight:600;color:#344c5b}
+.invoice-provenance dd{margin:0;font-size:12px;line-height:1.75}
+.invoice-evaluation-steps{padding-left:20px;margin:0}
+.invoice-evaluation-steps li{margin-bottom:12px;padding-left:5px}
+.invoice-workload-table{width:100%;border-collapse:collapse;font-size:12px}
+.invoice-workload-table caption{text-align:left;color:#64727d;font-size:11px;padding:0 0 15px}
+.invoice-workload-table th,.invoice-workload-table td{padding:14px 12px;border-bottom:1px solid #e0e6ea;vertical-align:top;text-align:left}
+.invoice-workload-table th:first-child,.invoice-workload-table td:first-child{padding-left:0}
+.invoice-workload-table th{font-weight:500;color:#3d515f}
+.invoice-workload-table tbody th{min-width:175px;max-width:250px;color:#273d4b}
+.invoice-workload-table td[colspan]{color:#61717c}
+.invoice-review-metrics{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+.invoice-research-panel{padding:55px 0;background:#eef2f4;border-top:1px solid #dce2e6;border-bottom:1px solid #dce2e6}
+.invoice-research-heading{display:flex;align-items:center;justify-content:space-between;gap:25px;margin-bottom:22px}
+.invoice-research-heading h2{font-size:30px;margin-top:12px}
+.invoice-research-heading .text-link{font-size:13px;white-space:nowrap}
+.invoice-research-lead{max-width:830px;font-size:15px;line-height:1.8}
+.invoice-research-panel .invoice-evidence-box{margin-bottom:0}
+.invoice-research-links{display:flex;flex-wrap:wrap;gap:14px 26px;margin-top:25px;font-size:13px}
+.invoice-research-links a{text-decoration:underline;text-underline-offset:4px}
+@media(max-width:1000px){.invoice-claim-grid{gap:12px}.invoice-claim{padding:18px}.invoice-claim>strong{font-size:29px}.invoice-population-flow{grid-template-columns:1fr 1fr;row-gap:28px}.invoice-population-flow li:nth-child(2)::after{content:''}}
+@media(max-width:700px){.invoice-claim-grid,.invoice-denominators,.invoice-cost-columns{grid-template-columns:1fr;gap:16px}.invoice-evidence-box{padding:20px 17px}.invoice-denominators>div+div{border-left:0;border-top:1px solid #dde4e8;padding:20px 0 0}.invoice-provenance>div{grid-template-columns:1fr;gap:7px}.invoice-evidence-box-head,.invoice-research-heading{align-items:flex-start;flex-direction:column;gap:10px}.invoice-review-metrics{grid-template-columns:1fr!important}.invoice-research-panel{padding:40px 0}.invoice-research-heading h2{font-size:27px}}
+@media(max-width:420px){.invoice-population-flow{grid-template-columns:1fr}.invoice-population-flow li:not(:last-child)::after{content:''}.invoice-population-flow span{min-height:0}}

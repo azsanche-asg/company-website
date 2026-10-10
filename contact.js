@@ -1,6 +1,6 @@
 /* Preserve enquiry context and prepare a local draft without sending a message. */
 const form = document.querySelector('#contact-form');
-import { topics, isSocialEnquiry, isImagingEnquiry, imagingModalities, prepareEnquiry } from './contact-message.mjs?v=20261009-clinical';
+import { topics, isSocialEnquiry, isImagingEnquiry, isInvoiceEnquiry, imagingModalities, prepareEnquiry } from './contact-message.mjs?v=20261010-invoice3';
 const params = new URLSearchParams(window.location.search);
 const topic = params.get('topic');
 if (Object.hasOwn(topics, topic)) form.elements.topic.value = topic;
@@ -22,6 +22,7 @@ const lead = intro.querySelector('.lead');
 const hint = form.querySelector('.hint-solution');
 const messageLabel = document.querySelector('#message-label');
 const socialFields = document.querySelector('#social-context');
+const invoiceFields = document.querySelector('#invoice-context');
 const imagingFields = document.querySelector('#imaging-context');
 const messageHint = document.querySelector('#message-hint');
 const genericMessageHint = messageHint.textContent;
@@ -30,10 +31,14 @@ const generic = { title: title.innerHTML, lead: lead.textContent, hint: hint.tex
 function updateContext() {
   const social = isSocialEnquiry({ topic: form.elements.topic.value, domain: form.elements.domain.value });
   const imaging = isImagingEnquiry({ topic: form.elements.topic.value, domain: form.elements.domain.value });
+  const invoice = isInvoiceEnquiry({ topic: form.elements.topic.value, domain: form.elements.domain.value });
+  intro.dataset.invoice = String(invoice);
+  invoiceFields.hidden = !invoice;
+  for (const field of invoiceFields.querySelectorAll('input,select')) field.disabled = !invoice;
   intro.dataset.imaging = String(imaging);
   imagingFields.hidden = !imaging;
   for (const field of imagingFields.querySelectorAll('input,select')) field.disabled = !imaging;
-  messageHint.textContent = imaging ? '20–3,000 characters. Describe the workflow only; leave out patient data and confidential details.' : genericMessageHint;
+  messageHint.textContent = imaging ? '20–3,000 characters. Describe the workflow only; leave out patient data and confidential details.' : invoice ? '20–3,000 characters. Describe the task; leave out real invoices, supplier details and banking information.' : genericMessageHint;
   intro.dataset.social = String(social);
   socialFields.hidden = !social;
   for (const field of socialFields.querySelectorAll('input,select')) field.disabled = !social;
@@ -57,6 +62,13 @@ function updateContext() {
     messageLabel.textContent = 'What does your team check today?';
     message.placeholder = context?.placeholder || 'Which AI finding do you use, how is it checked, and what would you like to improve?';
     button.textContent = 'Prepare evaluation enquiry ↗';
+  } else if (invoice) {
+    title.textContent = 'Could your team check fewer invoices?';
+    lead.textContent = 'Tell us what you extract and what people check today. We can scope a comparison of error risk, review effort and integration cost with your current process.';
+    hint.textContent = 'A short description is enough. No invoice upload, dataset or technical specification needed here.';
+    messageLabel.textContent = 'What invoice fields does your team check today?';
+    message.placeholder = 'Which fields and invoice types are checked, how does review work today, and what would make a worthwhile improvement?';
+    button.textContent = 'Prepare invoice evaluation enquiry ↗';
   } else {
     title.innerHTML = generic.title;
     lead.textContent = generic.lead;
