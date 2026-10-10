@@ -1,6 +1,6 @@
 /* Preserve enquiry context and prepare a local draft without sending a message. */
 const form = document.querySelector('#contact-form');
-import { topics, isSocialEnquiry, isImagingEnquiry, isInvoiceEnquiry, imagingModalities, prepareEnquiry } from './contact-message.mjs?v=20261010-invoice3';
+import { topics, isSocialEnquiry, isImagingEnquiry, isInvoiceEnquiry, isSupportEnquiry, imagingModalities, prepareEnquiry } from './contact-message.mjs?v=20261010-support3';
 const params = new URLSearchParams(window.location.search);
 const topic = params.get('topic');
 if (Object.hasOwn(topics, topic)) form.elements.topic.value = topic;
@@ -22,6 +22,7 @@ const lead = intro.querySelector('.lead');
 const hint = form.querySelector('.hint-solution');
 const messageLabel = document.querySelector('#message-label');
 const socialFields = document.querySelector('#social-context');
+const supportFields = document.querySelector('#support-context');
 const invoiceFields = document.querySelector('#invoice-context');
 const imagingFields = document.querySelector('#imaging-context');
 const messageHint = document.querySelector('#message-hint');
@@ -32,13 +33,17 @@ function updateContext() {
   const social = isSocialEnquiry({ topic: form.elements.topic.value, domain: form.elements.domain.value });
   const imaging = isImagingEnquiry({ topic: form.elements.topic.value, domain: form.elements.domain.value });
   const invoice = isInvoiceEnquiry({ topic: form.elements.topic.value, domain: form.elements.domain.value });
+  const support = isSupportEnquiry({ topic: form.elements.topic.value, domain: form.elements.domain.value });
+  intro.dataset.support = String(support);
+  supportFields.hidden = !support;
+  for (const field of supportFields.querySelectorAll('input,select')) field.disabled = !support;
   intro.dataset.invoice = String(invoice);
   invoiceFields.hidden = !invoice;
   for (const field of invoiceFields.querySelectorAll('input,select')) field.disabled = !invoice;
   intro.dataset.imaging = String(imaging);
   imagingFields.hidden = !imaging;
   for (const field of imagingFields.querySelectorAll('input,select')) field.disabled = !imaging;
-  messageHint.textContent = imaging ? '20–3,000 characters. Describe the workflow only; leave out patient data and confidential details.' : invoice ? '20–3,000 characters. Describe the task; leave out real invoices, supplier details and banking information.' : genericMessageHint;
+  messageHint.textContent = support ? '20–3,000 characters. Describe the workflow; leave out customer conversations, account details and personal data.' : imaging ? '20–3,000 characters. Describe the workflow only; leave out patient data and confidential details.' : invoice ? '20–3,000 characters. Describe the task; leave out real invoices, supplier details and banking information.' : genericMessageHint;
   intro.dataset.social = String(social);
   socialFields.hidden = !social;
   for (const field of socialFields.querySelectorAll('input,select')) field.disabled = !social;
@@ -69,6 +74,13 @@ function updateContext() {
     messageLabel.textContent = 'What invoice fields does your team check today?';
     message.placeholder = 'Which fields and invoice types are checked, how does review work today, and what would make a worthwhile improvement?';
     button.textContent = 'Prepare invoice evaluation enquiry ↗';
+  } else if (support) {
+    title.textContent = 'Which AI replies does your team check today?';
+    lead.textContent = 'Tell us the reply workflow and your current controls. We can scope a comparison of error risk, review effort, latency and integration cost.';
+    hint.textContent = 'Start with one workflow, language and channel. A short description is enough; no customer records or dataset needed here.';
+    messageLabel.textContent = 'What replies would you like to evaluate?';
+    message.placeholder = 'Which replies, language and channel? How do people check them today, and what improvement would matter?';
+    button.textContent = 'Prepare support evaluation enquiry ↗';
   } else {
     title.innerHTML = generic.title;
     lead.textContent = generic.lead;
