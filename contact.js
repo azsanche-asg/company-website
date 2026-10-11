@@ -1,6 +1,6 @@
 /* Preserve enquiry context and prepare a local draft without sending a message. */
 const form = document.querySelector('#contact-form');
-import { topics, isSocialEnquiry, isImagingEnquiry, isInvoiceEnquiry, isSupportEnquiry, imagingModalities, prepareEnquiry } from './contact-message.mjs?v=20261010-support3';
+import { topics, isDocumentationEnquiry, isSocialEnquiry, isImagingEnquiry, isInvoiceEnquiry, isSupportEnquiry, imagingModalities, prepareEnquiry } from './contact-message.mjs?v=20261011-documentation3';
 const params = new URLSearchParams(window.location.search);
 const topic = params.get('topic');
 if (Object.hasOwn(topics, topic)) form.elements.topic.value = topic;
@@ -21,6 +21,7 @@ const title = intro.querySelector('h1');
 const lead = intro.querySelector('.lead');
 const hint = form.querySelector('.hint-solution');
 const messageLabel = document.querySelector('#message-label');
+const documentationFields = document.querySelector('#documentation-context');
 const socialFields = document.querySelector('#social-context');
 const supportFields = document.querySelector('#support-context');
 const invoiceFields = document.querySelector('#invoice-context');
@@ -30,6 +31,10 @@ const genericMessageHint = messageHint.textContent;
 const generic = { title: title.innerHTML, lead: lead.textContent, hint: hint.textContent,
   placeholder: message.placeholder, button: button.innerHTML };
 function updateContext() {
+  const documentation = isDocumentationEnquiry({ topic: form.elements.topic.value, domain: form.elements.domain.value });
+  intro.dataset.documentation = String(documentation);
+  documentationFields.hidden = !documentation;
+  for (const field of documentationFields.querySelectorAll('input,select')) field.disabled = !documentation;
   const social = isSocialEnquiry({ topic: form.elements.topic.value, domain: form.elements.domain.value });
   const imaging = isImagingEnquiry({ topic: form.elements.topic.value, domain: form.elements.domain.value });
   const invoice = isInvoiceEnquiry({ topic: form.elements.topic.value, domain: form.elements.domain.value });
@@ -43,11 +48,18 @@ function updateContext() {
   intro.dataset.imaging = String(imaging);
   imagingFields.hidden = !imaging;
   for (const field of imagingFields.querySelectorAll('input,select')) field.disabled = !imaging;
-  messageHint.textContent = support ? '20–3,000 characters. Describe the workflow; leave out customer conversations, account details and personal data.' : imaging ? '20–3,000 characters. Describe the workflow only; leave out patient data and confidential details.' : invoice ? '20–3,000 characters. Describe the task; leave out real invoices, supplier details and banking information.' : genericMessageHint;
+  messageHint.textContent = documentation ? '20–3,000 characters. Describe the workflow only; do not include patient names, notes, transcripts or other health information.' : support ? '20–3,000 characters. Describe the workflow; leave out customer conversations, account details and personal data.' : imaging ? '20–3,000 characters. Describe the workflow only; leave out patient data and confidential details.' : invoice ? '20–3,000 characters. Describe the task; leave out real invoices, supplier details and banking information.' : genericMessageHint;
   intro.dataset.social = String(social);
   socialFields.hidden = !social;
   for (const field of socialFields.querySelectorAll('input,select')) field.disabled = !social;
-  if (social) {
+  if (documentation) {
+    title.textContent = 'Which medication or allergy checks does your team perform today?';
+    lead.textContent = 'Let’s scope one documentation task and compare error risk, checking effort and integration cost with your current process.';
+    hint.textContent = 'A short description is enough. No patient records, transcript or dataset needed here.';
+    messageLabel.textContent = 'What documentation workflow would you like to evaluate?';
+    message.placeholder = 'Which note type, language and clinical setting? What do people check today, and what improvement would matter?';
+    button.textContent = 'Prepare documentation enquiry ↗';
+  } else if (social) {
     title.textContent = 'Let’s evaluate your listening workflow.';
     lead.textContent = 'Tell us what you monitor and what your team reviews today. We can discuss the evidence needed to evaluate review effort and missed priority mentions.';
     hint.textContent = 'A short description is enough to start. No dataset or technical specification needed here.';
