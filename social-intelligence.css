@@ -132,11 +132,12 @@
 .social-adoption { padding: 48px 0 0; }
 .social-adoption .eyebrow { font-size: 10px; }
 .social-adoption h2 { font-size: 31px; margin: 15px 0 26px; }
-.social-adoption-roles { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; }
+.social-adoption-roles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px; }
 .social-adoption h3 { font-size: 18px; margin-bottom: 10px; }
 .social-adoption p { font-size: 14px; line-height: 1.75; max-width: 75ch; }
 .social-adoption details { margin-top: 26px; padding: 18px 0; border-block: 1px solid var(--line); }
 .social-adoption summary { cursor: pointer; font-size: 14px; }
 .social-adoption details p { margin-top: 14px; }
 .social-adoption .text-link { margin-top: 16px; font-size: 13px; }
-@media(max-width:760px) { .social-adoption { padding-top:38px; } .social-adoption h2 { font-size:28px; } .social-adoption-roles { grid-template-columns:1fr; gap:24px; } }
+@media(max-width:900px) { .social-adoption-roles { grid-template-columns:1fr; gap:24px; } }
+@media(max-width:760px) { .social-adoption { padding-top:38px; } .social-adoption h2 { font-size:28px; } }

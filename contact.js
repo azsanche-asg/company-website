@@ -1,6 +1,6 @@
 /* Preserve enquiry context and prepare a local draft without sending a message. */
 const form = document.querySelector('#contact-form');
-import { topics, isDocumentationEnquiry, isSocialEnquiry, isImagingEnquiry, isInvoiceEnquiry, isSupportEnquiry, imagingModalities, prepareEnquiry } from './contact-message.mjs?v=20261011-documentation3';
+import { topics, isDocumentationEnquiry, isSocialEnquiry, isImagingEnquiry, isInvoiceEnquiry, isSupportEnquiry, imagingModalities, prepareEnquiry } from './contact-message.mjs?v=20261014-providers';
 const params = new URLSearchParams(window.location.search);
 const topic = params.get('topic');
 if (Object.hasOwn(topics, topic)) form.elements.topic.value = topic;
@@ -53,46 +53,46 @@ function updateContext() {
   socialFields.hidden = !social;
   for (const field of socialFields.querySelectorAll('input,select')) field.disabled = !social;
   if (documentation) {
-    title.textContent = 'Which medication or allergy checks does your team perform today?';
-    lead.textContent = 'Let’s scope one documentation task and compare error risk, checking effort and integration cost with your current process.';
-    hint.textContent = 'A short description is enough. No patient records, transcript or dataset needed here.';
-    messageLabel.textContent = 'What documentation workflow would you like to evaluate?';
-    message.placeholder = 'Which note type, language and clinical setting? What do people check today, and what improvement would matter?';
-    button.textContent = 'Prepare documentation enquiry ↗';
+    title.textContent = 'Tell us about your scribe.';
+    lead.textContent = 'Choose one workflow to evaluate for errors and extra checking.';
+    hint.textContent = 'A short description is enough. No patient data needed.';
+    messageLabel.textContent = 'Which note workflow should we assess?';
+    message.placeholder = 'Note type, clinical setting and checks you want to improve.';
+    button.textContent = 'Prepare documentation enquiry ↗︎';
   } else if (social) {
-    title.textContent = 'Let’s evaluate your listening workflow.';
-    lead.textContent = 'Tell us what you monitor and what your team reviews today. We can discuss the evidence needed to evaluate review effort and missed priority mentions.';
+    title.textContent = 'Tell us about your listening product or workflow.';
+    lead.textContent = 'Which prioritization decision would you like to automate? We can scope one workflow and assess review effort alongside the risk of missed priority mentions.';
     hint.textContent = 'A short description is enough to start. No dataset or technical specification needed here.';
-    messageLabel.textContent = 'What would you like to improve?';
-    message.placeholder = 'What do you monitor, which mentions need attention, and how does your team review them today?';
-    button.textContent = 'Prepare workflow enquiry ↗';
+    messageLabel.textContent = 'What would you like your product to automate?';
+    message.placeholder = 'Describe one customer workflow, how AI prioritizes mentions today and what review work you want to reduce.';
+    button.textContent = 'Prepare social intelligence enquiry ↗︎';
   } else if (imaging) {
     const selected = form.elements.imagingModality.value;
     const context = {
-      'chest-xray': {title:'Let’s evaluate one chest-X-ray finding.', placeholder:'Which finding does your AI produce, and what would you want to improve for the radiologist?'},
-      fundus: {title:'Let’s evaluate your grading workflow.', placeholder:'Which routine image results receive an extra check today, and how does your service complete the screening encounter?'},
-      oct: {title:'Let’s evaluate one OCT finding.', placeholder:'Which findings do you verify today—per B-scan, volume or examination—and what would you want to improve?'}
+      'chest-xray': 'The findings your product provides and what you want to improve for radiologists.',
+      fundus: 'How your product uses fundus grades and where additional checks happen.',
+      oct: 'How your product uses OCT findings and where additional verification happens.'
     }[selected];
-    title.textContent = context?.title || 'Let’s evaluate one imaging task.';
-    lead.textContent = 'Start with one finding and the work around it. We can scope a retrospective comparison, the references it needs and what would count as a worthwhile result.';
+    title.textContent = 'Tell us about your imaging product.';
+    lead.textContent = 'Which AI findings does it use, and what would you like to improve?';
     hint.textContent = 'A short description is enough. No dataset or technical specification needed here.';
-    messageLabel.textContent = 'What does your team check today?';
-    message.placeholder = context?.placeholder || 'Which AI finding do you use, how is it checked, and what would you like to improve?';
-    button.textContent = 'Prepare evaluation enquiry ↗';
+    messageLabel.textContent = 'Which workflow should we assess?';
+    message.placeholder = context || 'AI findings, current checks and what you want to improve.';
+    button.textContent = 'Prepare evaluation enquiry ↗︎';
   } else if (invoice) {
-    title.textContent = 'Could your team check fewer invoices?';
-    lead.textContent = 'Tell us what you extract and what people check today. We can scope a comparison of error risk, review effort and integration cost with your current process.';
-    hint.textContent = 'A short description is enough. No invoice upload, dataset or technical specification needed here.';
-    messageLabel.textContent = 'What invoice fields does your team check today?';
-    message.placeholder = 'Which fields and invoice types are checked, how does review work today, and what would make a worthwhile improvement?';
-    button.textContent = 'Prepare invoice evaluation enquiry ↗';
+    title.textContent = 'Tell us about your invoice product.';
+    lead.textContent = 'Choose one customer workflow to evaluate.';
+    hint.textContent = 'A short description is enough. No invoices needed.';
+    messageLabel.textContent = 'Which customer workflow should we assess?';
+    message.placeholder = 'Invoice types, fields, existing controls and what you want to improve.';
+    button.textContent = 'Prepare invoice enquiry ↗︎';
   } else if (support) {
-    title.textContent = 'Which AI replies does your team check today?';
-    lead.textContent = 'Tell us the reply workflow and your current controls. We can scope a comparison of error risk, review effort, latency and integration cost.';
-    hint.textContent = 'Start with one workflow, language and channel. A short description is enough; no customer records or dataset needed here.';
-    messageLabel.textContent = 'What replies would you like to evaluate?';
-    message.placeholder = 'Which replies, language and channel? How do people check them today, and what improvement would matter?';
-    button.textContent = 'Prepare support evaluation enquiry ↗';
+    title.textContent = 'Tell us about your support product.';
+    lead.textContent = 'Choose one customer workflow to evaluate.';
+    hint.textContent = 'A short description is enough. No customer records needed.';
+    messageLabel.textContent = 'Which customer workflow should we assess?';
+    message.placeholder = 'Reply type, existing controls and what you want to improve.';
+    button.textContent = 'Prepare support enquiry ↗︎';
   } else {
     title.innerHTML = generic.title;
     lead.textContent = generic.lead;

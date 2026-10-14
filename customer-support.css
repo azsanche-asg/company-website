@@ -37,3 +37,7 @@
 .support-visual .support-visual-inspect{display:flex;align-items:center;justify-content:space-between;padding:11px 23px;border-top:1px solid #e0e5e7;color:#405f68;background:#f5f8f8;font-size:11px;text-decoration:none}
 .support-visual .support-visual-inspect:hover{background:#edf3f2;text-decoration:underline;text-underline-offset:4px}
 .support-workload-title>span:last-child{max-width:210px;text-align:right}
+
+/* Provider responsibilities on the solution page only. */
+#support-adoption .support-provider-roles{grid-template-columns:repeat(3,minmax(0,1fr))}
+@media(max-width:850px){#support-adoption .support-provider-roles{grid-template-columns:1fr}}
