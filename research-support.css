@@ -43,7 +43,7 @@
 .support-scorer-flow li{border-top:2px solid #a5bbbf;padding-top:14px;font-size:12px}.support-scorer-flow strong{display:block;font-weight:550;color:#36525e;margin-bottom:9px}.support-scorer-flow span{display:block;font-size:11px;line-height:1.7}
 .support-evaluation-steps{margin:0;padding-left:21px}.support-evaluation-steps li{margin-bottom:15px;padding-left:5px;font-size:13px;line-height:1.75}
 .support-research-panel{padding:55px 0;background:#eff3f4;border-top:1px solid #d6dfe3;scroll-margin-top:90px}
-.support-research-panel>.wrap{max-width:1180px}.support-research-title{display:flex;justify-content:space-between;gap:30px;align-items:end;margin-bottom:22px}.support-research-title h2{font-size:31px;line-height:1.2;letter-spacing:-.04em;max-width:600px;margin:12px 0 0}.support-research-title .eyebrow{font-size:11px}.support-research-title .text-link{font-size:13px;gap:12px;white-space:nowrap}
+.support-research-title{display:flex;justify-content:space-between;gap:30px;align-items:end;margin-bottom:22px}.support-research-title h2{font-size:31px;line-height:1.2;letter-spacing:-.04em;max-width:600px;margin:12px 0 0}.support-research-title .eyebrow{font-size:11px}.support-research-title .text-link{font-size:13px;gap:12px;white-space:nowrap}
 .support-research-lead{max-width:800px;font-size:15px;line-height:1.8;margin-bottom:24px;color:#586b75}
 .support-page-evidence-details{grid-column:1/-1;margin-top:-20px;min-width:0}
 .support-page-evidence-details>.support-evidence-details{margin-top:16px}

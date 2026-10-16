@@ -1,0 +1,6 @@
+Quantity,Calibration,Held-out evaluation
+Studies,60,60
+Reference-label misses,2,0
+Adjusted calibration risk,3 / 61 · 4.92%,Not a test statistic
+Single / two-label answers,—,8 / 52
+Mean labels returned,—,1.8667

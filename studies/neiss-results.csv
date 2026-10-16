@@ -1,0 +1,5 @@
+Expected miss target,Observed set misses,Single-label outputs,Mean labels returned
+1%,1.02%,21.98%,1.7802
+2.5%,2.38%,34.25%,1.6575
+5%,4.93%,50.50%,1.4950
+10%,8.55%,64.35%,1.3565

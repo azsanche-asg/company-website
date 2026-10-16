@@ -1,0 +1,5 @@
+Quantity,Calibration,Held-out evaluation
+Lesions,613,624
+Reference-label misses,29 · 4.73%,28 · 4.49%
+Adjusted calibration risk,30 / 614 · 4.89%,Not a test statistic
+Mean labels returned,—,2.2436
