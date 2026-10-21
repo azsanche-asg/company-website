@@ -1,0 +1,207 @@
+{
+  "protocol": {
+    "dataset": "BANKING77",
+    "source_commit": "57ec275d8078af65b7731c2a98be812d844a6d6b",
+    "seed": 20261021,
+    "model": "word TF-IDF unigrams/bigrams + multinomial logistic regression",
+    "tfidf": {
+      "ngram_range": [
+        1,
+        2
+      ],
+      "sublinear_tf": true,
+      "min_df": 2
+    },
+    "logistic_regression": {
+      "C": 10.0,
+      "max_iter": 1000,
+      "solver": "lbfgs",
+      "tol": 0.0001
+    },
+    "training_fraction": 0.7,
+    "split": "Fixed random permutation of unique normalized official training texts; first 70% for training, rest calibration. Official test kept for final evaluation. Exact text duplicates removed.",
+    "score": "maximum predicted class probability; used only as ranking score",
+    "thresholds": [
+      0.35,
+      0.45,
+      0.55,
+      0.65,
+      0.7,
+      0.75,
+      0.8,
+      0.85,
+      0.9,
+      0.95
+    ],
+    "targets": [
+      0.01,
+      0.02,
+      0.05,
+      0.1
+    ],
+    "family_delta": 0.05,
+    "bound": "One-sided Clopper-Pearson binomial upper bound, Bonferroni delta/10 for simultaneous threshold validity.",
+    "selection": "At each target, choose threshold with most calibration selections among those with upper bound <= target; ties prefer higher threshold. No passing threshold means all requests retain review.",
+    "error": "Predicted intent differs from the dataset intent label.",
+    "population": "English banking support queries under the same sampling distribution; 77 known intents.",
+    "scope": "Intent routing, not factual correctness of generated replies. Assumes independent examples and fixed model and threshold family. No guarantee under distribution shift, missing labels or correlated conversations.",
+    "workload": "One routing review per unselected enquiry. No audits, reviewer errors, task durations, integration or setup costs modelled.",
+    "tuning": "One model configuration, one split and one predeclared threshold family. No tuning on calibration/test results."
+  },
+  "versions": {
+    "python": "3.13.7",
+    "numpy": "2.3.3",
+    "scipy": "1.16.2",
+    "scikit_learn": "1.7.2"
+  },
+  "sha256": {
+    "train.csv": "b06e26ac675513959a63135f11b94ea7786ed02da65db93a5650d8838cbc664b",
+    "test.csv": "d12d6e3bc4c3103966ae786dc435913c0c563dfa328f5a3646d0e62cfeeb474d"
+  },
+  "counts": {
+    "official_train": 10003,
+    "training": 6999,
+    "calibration": 3000,
+    "official_test": 3080,
+    "test": 3072,
+    "train_duplicates_removed": 4,
+    "test_overlap_removed": 7,
+    "test_duplicates_removed": 1
+  },
+  "test_without_selection": {
+    "errors": 378,
+    "n": 3072,
+    "error_rate": 0.123046875
+  },
+  "candidates": [
+    {
+      "threshold": 0.35,
+      "selected": 2551,
+      "errors": 157,
+      "upper_bound": 0.07483727332875131
+    },
+    {
+      "threshold": 0.45,
+      "selected": 2333,
+      "errors": 112,
+      "upper_bound": 0.060577002015147874
+    },
+    {
+      "threshold": 0.55,
+      "selected": 2087,
+      "errors": 64,
+      "upper_bound": 0.04175417875929333
+    },
+    {
+      "threshold": 0.65,
+      "selected": 1852,
+      "errors": 42,
+      "upper_bound": 0.03316993167863499
+    },
+    {
+      "threshold": 0.7,
+      "selected": 1716,
+      "errors": 32,
+      "upper_bound": 0.028793299989158486
+    },
+    {
+      "threshold": 0.75,
+      "selected": 1558,
+      "errors": 22,
+      "upper_bound": 0.023771805739614193
+    },
+    {
+      "threshold": 0.8,
+      "selected": 1396,
+      "errors": 14,
+      "upper_bound": 0.01913516413209796
+    },
+    {
+      "threshold": 0.85,
+      "selected": 1156,
+      "errors": 10,
+      "upper_bound": 0.01841909236769615
+    },
+    {
+      "threshold": 0.9,
+      "selected": 858,
+      "errors": 1,
+      "upper_bound": 0.008627447300705417
+    },
+    {
+      "threshold": 0.95,
+      "selected": 509,
+      "errors": 0,
+      "upper_bound": 0.010355278972309461
+    }
+  ],
+  "policies": [
+    {
+      "target": 0.01,
+      "calibration": {
+        "threshold": 0.9,
+        "selected": 858,
+        "errors": 1,
+        "upper_bound": 0.008627447300705417
+      },
+      "test": {
+        "selected": 951,
+        "errors": 4,
+        "retained_review": 2121,
+        "selected_fraction": 0.3095703125,
+        "observed_error_rate": 0.004206098843322818
+      }
+    },
+    {
+      "target": 0.02,
+      "calibration": {
+        "threshold": 0.8,
+        "selected": 1396,
+        "errors": 14,
+        "upper_bound": 0.01913516413209796
+      },
+      "test": {
+        "selected": 1439,
+        "errors": 15,
+        "retained_review": 1633,
+        "selected_fraction": 0.4684244791666667,
+        "observed_error_rate": 0.010423905489923557
+      }
+    },
+    {
+      "target": 0.05,
+      "calibration": {
+        "threshold": 0.55,
+        "selected": 2087,
+        "errors": 64,
+        "upper_bound": 0.04175417875929333
+      },
+      "test": {
+        "selected": 2184,
+        "errors": 64,
+        "retained_review": 888,
+        "selected_fraction": 0.7109375,
+        "observed_error_rate": 0.029304029304029304
+      }
+    },
+    {
+      "target": 0.1,
+      "calibration": {
+        "threshold": 0.35,
+        "selected": 2551,
+        "errors": 157,
+        "upper_bound": 0.07483727332875131
+      },
+      "test": {
+        "selected": 2638,
+        "errors": 178,
+        "retained_review": 434,
+        "selected_fraction": 0.8587239583333334,
+        "observed_error_rate": 0.06747536012130402
+      }
+    }
+  ],
+  "iterations": [
+    56
+  ]
+}

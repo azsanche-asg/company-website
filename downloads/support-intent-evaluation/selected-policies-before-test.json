@@ -1,0 +1,38 @@
+[
+  {
+    "target": 0.01,
+    "calibration": {
+      "threshold": 0.9,
+      "selected": 858,
+      "errors": 1,
+      "upper_bound": 0.008627447300705417
+    }
+  },
+  {
+    "target": 0.02,
+    "calibration": {
+      "threshold": 0.8,
+      "selected": 1396,
+      "errors": 14,
+      "upper_bound": 0.01913516413209796
+    }
+  },
+  {
+    "target": 0.05,
+    "calibration": {
+      "threshold": 0.55,
+      "selected": 2087,
+      "errors": 64,
+      "upper_bound": 0.04175417875929333
+    }
+  },
+  {
+    "target": 0.1,
+    "calibration": {
+      "threshold": 0.35,
+      "selected": 2551,
+      "errors": 157,
+      "upper_bound": 0.07483727332875131
+    }
+  }
+]

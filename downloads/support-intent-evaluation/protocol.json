@@ -1,0 +1,49 @@
+{
+  "dataset": "BANKING77",
+  "source_commit": "57ec275d8078af65b7731c2a98be812d844a6d6b",
+  "seed": 20261021,
+  "model": "word TF-IDF unigrams/bigrams + multinomial logistic regression",
+  "tfidf": {
+    "ngram_range": [
+      1,
+      2
+    ],
+    "sublinear_tf": true,
+    "min_df": 2
+  },
+  "logistic_regression": {
+    "C": 10.0,
+    "max_iter": 1000,
+    "solver": "lbfgs",
+    "tol": 0.0001
+  },
+  "training_fraction": 0.7,
+  "split": "Fixed random permutation of unique normalized official training texts; first 70% for training, rest calibration. Official test kept for final evaluation. Exact text duplicates removed.",
+  "score": "maximum predicted class probability; used only as ranking score",
+  "thresholds": [
+    0.35,
+    0.45,
+    0.55,
+    0.65,
+    0.7,
+    0.75,
+    0.8,
+    0.85,
+    0.9,
+    0.95
+  ],
+  "targets": [
+    0.01,
+    0.02,
+    0.05,
+    0.1
+  ],
+  "family_delta": 0.05,
+  "bound": "One-sided Clopper-Pearson binomial upper bound, Bonferroni delta/10 for simultaneous threshold validity.",
+  "selection": "At each target, choose threshold with most calibration selections among those with upper bound <= target; ties prefer higher threshold. No passing threshold means all requests retain review.",
+  "error": "Predicted intent differs from the dataset intent label.",
+  "population": "English banking support queries under the same sampling distribution; 77 known intents.",
+  "scope": "Intent routing, not factual correctness of generated replies. Assumes independent examples and fixed model and threshold family. No guarantee under distribution shift, missing labels or correlated conversations.",
+  "workload": "One routing review per unselected enquiry. No audits, reviewer errors, task durations, integration or setup costs modelled.",
+  "tuning": "One model configuration, one split and one predeclared threshold family. No tuning on calibration/test results."
+}
