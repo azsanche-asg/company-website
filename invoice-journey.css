@@ -1,0 +1,121 @@
+/* Invoice journey only. Approved support styles remain independent. */
+.ij-page .invoice-hero-grid{align-items:start}
+.ij-page .invoice-hero-copy h1{font-size:clamp(36px,3.7vw,50px);line-height:1.12;margin:19px 0 24px;max-width:620px}
+.ij-page .invoice-hero-copy .lead{max-width:560px;line-height:1.75}
+.ij-page .invoice-hero-copy .actions{flex-wrap:wrap}
+.ij-page .invoice-hero-copy .button{font-size:12px;gap:15px}
+.ij-page .invoice-visual{margin-top:14px}
+.ij-page .invoice-science-link{line-height:1.7}
+.ij-page .invoice-section{padding:64px 0}
+.ij-page .invoice-section h2{font-size:clamp(29px,2.7vw,36px);line-height:1.18}
+.ij-marker{vertical-align:super;font-size:.75em;margin-left:3px;text-decoration:underline;text-underline-offset:2px}
+.ij-footnote{font-size:12px;line-height:1.8;margin:30px 0 0;max-width:1080px}
+.ij-footnote a{text-decoration:underline;text-underline-offset:3px;white-space:nowrap}
+.ij-jump{display:flex;flex-wrap:wrap;gap:12px 30px;border-top:1px solid var(--line);margin-top:25px;padding:19px 0;font-size:12px;color:#4a5b56}
+.ij-jump a:hover,.ij-map-link:hover{text-decoration:underline;text-underline-offset:4px}
+.ij-wash{background:#eef1ef}
+.ij-split{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start}
+.ij-split>p,.ij-split>div>p:not(.eyebrow){font-size:16px;line-height:1.8;margin:0 0 18px}
+.ij-split>p{padding-top:25px}
+.ij-split h2{margin-bottom:18px!important}
+.ij-split .text-link{font-size:14px;margin-top:8px}
+.ij-three{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:38px;margin-top:30px}
+.ij-three>article{border-top:1px solid #bbc7c0;padding-top:23px}
+.ij-three h3{font-size:25px;line-height:1.25;margin:16px 0}
+.ij-three article>p:not(.eyebrow){font-size:14px;line-height:1.8}
+.ij-three .text-link{font-size:13px;margin-top:22px;line-height:1.6}
+.ij-two{display:grid;grid-template-columns:1fr 1fr;gap:38px;align-items:start}
+.ij-disclosure{margin-top:28px;border-top:1px solid var(--line);scroll-margin-top:105px}
+.ij-disclosure summary{cursor:pointer;padding:20px 0;font-size:15px;font-weight:500;line-height:1.5}
+.ij-disclosure>div{padding:0 0 16px;max-width:1000px}
+.ij-disclosure p{font-size:14px;line-height:1.85;margin:0 0 16px}
+.ij-disclosure strong{font-weight:550;color:#283d33}
+.ij-disclosure .text-link{font-size:14px}
+.ij-flow{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;list-style:none;margin:25px 0 14px;padding:0}
+.ij-flow li{position:relative;border:1px solid #d5dcd7;border-radius:5px;padding:27px;background:#fff}
+.ij-flow li+li:before{content:'→';position:absolute;left:-18px;top:calc(50% - 13px);color:#65796e;z-index:1;background:var(--paper);font-size:18px;line-height:26px}
+.ij-flow .ij-flow-gate{background:#e9efeb;border-color:#a9bcb0}
+.ij-flow h3{font-size:22px;line-height:1.3;margin:17px 0 12px}
+.ij-flow p{font-size:14px;line-height:1.75}
+.ij-caption{font-size:12px;line-height:1.8;max-width:1000px;margin:15px 0}
+.ij-actions{margin-top:25px;flex-wrap:wrap;gap:22px}
+.ij-actions .text-link{font-size:13px;line-height:1.7}
+.ij-audiences .ij-role{font-size:13px!important;margin-top:20px;color:#617069}
+.ij-share{border-top:1px solid var(--line);padding-top:24px;margin-top:35px;display:flex;gap:25px;align-items:center;justify-content:space-between}
+.ij-share p{font-size:13px;line-height:1.8;max-width:660px}
+.ij-share .text-link{font-size:13px;flex-shrink:0}
+.ij-scope-grid{margin:25px 0}
+.ij-scope-grid article{border-top:1px solid #becbc3;padding-top:23px}
+.ij-scope-grid h3{font-size:24px;margin-bottom:15px}
+.ij-scope-grid p{font-size:14px;line-height:1.8}
+#invoice-scope>.wrap>.text-link{font-size:13px}
+.ij-lead{font-size:17px;line-height:1.8;max-width:900px;margin:0 0 28px}
+.ij-evaluation{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin:28px 0 24px}
+.ij-evaluation article{padding:30px;border:1px solid #d5dcd7;background:#fff;border-radius:5px}
+.ij-evaluation article+article{background:#e9efeb;border-color:#bacac0}
+.ij-evaluation h3{font-size:25px;line-height:1.25;margin:15px 0 21px}
+.ij-evaluation ul{padding-left:18px;margin:0}
+.ij-evaluation li{font-size:14px;line-height:1.8;padding-left:4px;margin:10px 0;color:#52605a}
+.ij-evaluation li::marker{color:#72907e}
+.ij-outcome{font-size:14px;line-height:1.8;max-width:900px}
+.ij-evidence-hero h1{font-size:clamp(36px,4vw,54px);line-height:1.12;letter-spacing:-.04em;max-width:1020px;margin:18px 0 24px}
+.ij-evidence-hero .ij-lead{font-size:20px;max-width:870px}
+.ij-evidence-map{gap:26px;margin-top:36px}
+.ij-evidence-map>a{display:flex;flex-direction:column;align-items:flex-start;border-top:1px solid #aebdb4;padding:22px 0 0}
+.ij-page .ij-evidence-map h2{font-size:25px;line-height:1.23;margin:15px 0}
+.ij-evidence-map p{font-size:14px;line-height:1.8;margin:0 0 20px}
+.ij-map-link{font-size:13px;margin-top:auto;display:inline-flex;align-items:center;gap:12px;line-height:1.6}
+.ij-numbers{margin-bottom:26px}
+.ij-numbers strong{font-size:42px;font-weight:500;letter-spacing:-.045em}
+.ij-numbers h3{font-size:22px;margin-top:8px}
+.ij-method{display:grid;grid-template-columns:1fr 1fr;gap:28px 48px;list-style:none;padding:0;margin:32px 0}
+.ij-method li{border-top:1px solid #bbc8bf;padding-top:22px}
+.ij-method h3{font-size:24px;line-height:1.3;margin:14px 0}
+.ij-method p{font-size:14px;line-height:1.8;max-width:510px}
+.ij-page .invoice-evidence-details{scroll-margin-top:104px}
+.ij-page .invoice-section>.wrap>.invoice-evidence-details{margin-top:24px}
+.ij-platform-route{display:flex;justify-content:space-between;gap:36px;align-items:center;border:1px solid #c4d1c8;background:#eaf0ec;padding:26px 30px;margin-top:22px;border-radius:5px}
+.ij-platform-route h2{font-size:27px;line-height:1.25;margin:9px 0 10px}
+.ij-platform-route p:not(.eyebrow){font-size:14px;line-height:1.75;max-width:740px}
+.ij-platform-route .button{font-size:13px;white-space:normal;line-height:1.5;flex-shrink:0}
+/* Invoice-only additions to the short example and portable walkthrough shell. */
+.ij-demo-label{font-size:11px;line-height:1.7;color:#61736b;margin:22px 0 0}
+.ij-demo-takeaways{padding:36px 0 30px;margin-top:25px;border-bottom:1px solid #d4dfd9}
+.ij-demo-kicker{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:#5c7567;margin:0 0 16px}
+.ij-demo-takeaways h1,.ij-demo-takeaways h2,.ij-paths h1{font-size:clamp(28px,3.2vw,40px);line-height:1.16;letter-spacing:-.035em;font-weight:550;margin:0 0 22px;max-width:950px}
+.ij-demo-lead{font-size:17px;line-height:1.8;color:#56675f;max-width:890px;margin:0 0 30px}
+.ij-demo-columns{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:32px}
+.ij-demo-columns article{padding-top:20px;border-top:1px solid #b9c9bf}
+.ij-demo-columns h3{font-size:22px;line-height:1.3;font-weight:550;letter-spacing:-.025em;margin:0 0 13px}
+.ij-demo-columns p{font-size:14px;line-height:1.8;color:#596a61;margin:0}
+.ij-demo-note{font-size:12px;line-height:1.8;color:#597163;background:#edf2ef;padding:15px 18px;margin:28px 0}
+.ij-demo-next{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.ij-demo-next a{display:flex;align-items:center;justify-content:space-between;gap:12px;border:1px solid #bacbc0;border-radius:5px;padding:19px;font-size:14px;line-height:1.5;background:#fff}
+.ij-demo-next a:last-child{background:#203b2c;color:#fff;border-color:#203b2c}
+.ij-demo-evidence{display:inline-block;font-size:12px;line-height:1.8;margin-top:22px;color:#5d7065!important}
+.ij-paths{margin-top:40px}
+.ij-paths nav{display:flex;flex-direction:column;align-items:flex-start;gap:15px;margin-top:24px;font-size:14px}
+.ij-paths nav a{border-bottom:1px solid #bdccc2;padding-bottom:5px}
+.ij-path-links{display:flex;flex-wrap:wrap;gap:18px 28px;margin:30px 0;padding-top:22px;border-top:1px solid #d4dfd9;font-size:13px}
+.ij-quick-heading h1{max-width:910px}
+.ij-quick-heading .ij-path-prompt{font-size:13px;margin:20px 0 0}
+.ij-stage-context{height:76px;display:flex;align-items:center;gap:14px;padding:12px 24px;background:#edf2ef;border-bottom:1px solid #cbd7cf;font:13px/1.6 Inter,Arial,sans-serif;color:#364d40;box-sizing:border-box}
+.ij-stage-context strong{white-space:nowrap;font-weight:600}
+.ij-stage-context span{max-width:1000px}
+.ij-stage-context a{margin-left:auto;white-space:nowrap;text-decoration:underline;text-underline-offset:3px;color:inherit}
+.website-embedded-demo.walkthrough-open #offline-player{height:calc(100% - 76px)}
+.website-embedded-demo #invoice-frame{height:calc(100vh - var(--website-nav-height) - 76px);height:calc(100dvh - var(--website-nav-height) - 76px)}
+@media(max-width:1000px){.ij-split{gap:35px}.ij-three,.ij-demo-columns{gap:24px}.ij-flow li{padding:22px}.ij-flow h3{font-size:20px}.ij-platform-route{gap:24px}}
+@media(max-width:850px){.ij-split{grid-template-columns:1fr;gap:12px}.ij-split>p{padding-top:0}.ij-platform-route{align-items:flex-start;flex-direction:column;gap:20px}.ij-share{align-items:flex-start;flex-direction:column;gap:16px}}
+@media(max-width:760px){
+ .ij-page .invoice-hero-copy h1{font-size:36px}.ij-page .invoice-section{padding:43px 0}.ij-page .invoice-visual{margin-top:0}
+ .ij-footnote{margin-top:24px}.ij-jump{gap:12px 23px;font-size:11px}.ij-split>p,.ij-split>div>p:not(.eyebrow){font-size:15px}
+ .ij-three,.ij-two,.ij-flow,.ij-evaluation,.ij-method,.ij-demo-columns,.ij-demo-next{grid-template-columns:1fr;gap:24px}.ij-three h3{font-size:24px;margin:13px 0}.ij-three h3 br{display:none}
+ .ij-flow{gap:18px;margin-top:20px}.ij-flow li+li:before{content:'↓';left:calc(50% - 10px);top:-21px;background:var(--paper);line-height:22px;padding:0 5px}
+ .ij-two:has(.ij-disclosure){gap:0}.ij-actions{gap:18px}.ij-actions .button{white-space:normal;line-height:1.6}
+ .ij-evaluation article{padding:23px}.ij-evaluation h3{font-size:24px}.ij-lead,.ij-evidence-hero .ij-lead{font-size:16px}.ij-evidence-hero h1{font-size:36px}
+ .ij-platform-route{padding:23px}.ij-platform-route h2{font-size:25px}.ij-demo-takeaways{padding:28px 0}.ij-demo-lead{font-size:15px}.ij-demo-next{gap:12px}.ij-demo-next a{padding:16px}
+ .ij-stage-context{height:126px;display:grid;grid-template-columns:1fr auto;gap:5px 16px;padding:12px;font-size:11px;align-content:center}.ij-stage-context span{grid-column:1/-1;grid-row:2}.ij-stage-context strong{font-size:12px}.ij-stage-context a{grid-column:2;grid-row:1}
+ .website-embedded-demo.walkthrough-open #offline-player{height:calc(100% - 126px)}.website-embedded-demo #invoice-frame{height:calc(100vh - var(--website-nav-height) - 126px);height:calc(100dvh - var(--website-nav-height) - 126px)}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}

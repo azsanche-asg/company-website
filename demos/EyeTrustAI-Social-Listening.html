@@ -1487,7 +1487,7 @@ button {
 .j-dialog.evidence-dialog{width:720px}.cfg-modal:has(.evidence-risk-pair){width:min(720px,100%)}
 
 [hidden]{display:none!important}html,body{min-height:100%}body.walkthrough-open{height:100vh;overflow:hidden}#social-frame{display:block;width:100%;height:100vh;height:100dvh;border:0;background:#f8f8f8}.portable-intro{padding:12px 15px;background:#edf2f8;border:1px solid #d7e1ee;border-radius:6px;color:#415b7c;margin:22px 0 0}.portable-dialog-head{display:flex;align-items:center;justify-content:space-between;gap:20px}#offline-notes{max-width:750px;width:calc(100% - 32px);max-height:85vh;overflow:auto;border:1px solid #ddd;border-radius:10px;padding:26px;color:#24272b;font:14px/1.6 Inter,system-ui,sans-serif}#offline-notes h3{margin-top:24px}#offline-notes pre{white-space:pre-wrap;font:12px/1.6 monospace}#offline-notes button{cursor:pointer;padding:8px 14px;background:white;border:1px solid #ddd;border-radius:6px}dialog::backdrop{background:#18232666}#offline-error{max-width:650px;padding:24px;margin:30px auto;border:1px solid #dbc3c0;background:#fff}.offline-noscript{padding:24px;text-align:center}
-</style><link rel="stylesheet" href="../demo-navigation.css"><style>@media(max-width:640px){.website-embedded-demo{--website-nav-height:98px}.website-embedded-demo>.website-demo-nav{display:grid;grid-template-columns:1fr 1fr;gap:0 12px;align-content:center}.website-demo-nav a{min-height:40px}.website-demo-nav a:nth-child(even){justify-self:end}.website-demo-nav .brand{margin:0}}</style><link rel="stylesheet" href="../journey-quick.css"><script defer src="../journey-quick.js"></script><link rel="stylesheet" href="/contact-panel.css?v=20261021"><script type="module" src="/contact-panel.js?v=20261021"></script></head><body class="website-embedded-demo"><nav class="website-demo-nav" aria-label="Website navigation"><a class="brand" href="/" aria-label="EyeTrustAI home"><img src="/assets/logo.png" alt="">EyeTrustAI</a><a href="/social-intelligence.html">Social intelligence</a><a href="/social-intelligence-evidence.html" target="_blank" rel="noopener">Research ↗︎</a><a class="website-discuss" href="/contact.html?topic=solution&amp;domain=social&amp;source=walkthrough">Discuss your workflow</a></nav><noscript><p class="offline-noscript">This interactive demo needs JavaScript. Download the file and open it in a desktop browser, not an email preview.</p></noscript><div id="offline-chooser"><main id="quick-intro" data-quick-kind="social"></main></div><div id="offline-player" hidden></div><div id="offline-error" role="alert" hidden><h2>The walkthrough could not start</h2><p>Download this file and open it in a desktop browser. Document previews or your organisation’s security settings may prevent scripts from running.</p><a href="#home">Return to the introduction</a></div><dialog id="offline-notes" aria-labelledby="offline-title"><h2 id="offline-title">Using the walkthrough</h2><button id="close-notes">Close ×</button><p>Show me points to the next action. Guidance and explanations can be switched independently. Start the full journey to configure, warm up, review evidence and activate.</p><p>Original records are retained when working copies are corrected. Restarting begins a new session.</p><a href="../social-intelligence-evidence.html" target="_blank" rel="noopener">Research and methodology</a><details><summary>Font credits and licences</summary><p>Inter and IBM Plex Mono are embedded for offline use under the SIL Open Font License 1.1.</p><h3>Inter</h3><pre>Copyright 2020 The Inter Project Authors (https://github.com/rsms/inter)
+</style><link rel="stylesheet" href="../demo-navigation.css"><style>@media(max-width:640px){.website-embedded-demo{--website-nav-height:98px}.website-embedded-demo>.website-demo-nav{display:grid;grid-template-columns:1fr 1fr;gap:0 12px;align-content:center}.website-demo-nav a{min-height:40px}.website-demo-nav a:nth-child(even){justify-self:end}.website-demo-nav .brand{margin:0}}</style><link rel="stylesheet" href="../journey-quick.css"><script defer src="../social-quick.js?v=1"></script><link rel="stylesheet" href="/contact-panel.css?v=20261021"><script type="module" src="/contact-panel.js?v=20261031-guarantee-release"></script><link rel="stylesheet" href="../social-journey.css?v=3"></head><body class="website-embedded-demo"><nav class="website-demo-nav" aria-label="Website navigation"><a class="brand" href="/" aria-label="EyeTrustAI home"><img src="/assets/logo.png" alt="">EyeTrustAI</a><a href="/social-intelligence.html">Social intelligence</a><a href="#paths">Choose a path</a><a class="website-discuss" href="/contact.html?topic=solution&amp;domain=social&amp;purpose=evaluation&amp;source=walkthrough">Evaluate your workflow</a></nav><noscript><p class="offline-noscript">This interactive demo needs JavaScript. Download the file and open it in a desktop browser, not an email preview.</p></noscript><div id="offline-chooser"><main id="quick-intro" data-quick-kind="social"></main></div><aside class="slj-stage-context" id="social-stage-context" aria-label="Business context" hidden></aside><div id="offline-player" hidden></div><div id="offline-error" role="alert" hidden><h2>The walkthrough could not start</h2><p>Download this file and open it in a desktop browser. Document previews or your organisation’s security settings may prevent scripts from running.</p><a href="#home">Return to the introduction</a></div><dialog id="offline-notes" aria-labelledby="offline-title"><h2 id="offline-title">Using the walkthrough</h2><button id="close-notes">Close ×</button><p>Show me points to the next action. Guidance and explanations can be switched independently. Start the full journey to configure, warm up, review evidence and activate.</p><p>Original records are retained when working copies are corrected. Restarting begins a new session.</p><a href="../social-intelligence-evidence.html" target="_blank" rel="noopener">Research and methodology</a><details><summary>Font credits and licences</summary><p>Inter and IBM Plex Mono are embedded for offline use under the SIL Open Font License 1.1.</p><h3>Inter</h3><pre>Copyright 2020 The Inter Project Authors (https://github.com/rsms/inter)
 
 This Font Software is licensed under the SIL Open Font License, Version 1.1.
 This license is copied below, and is also available with a FAQ at:
@@ -1681,6 +1681,7 @@ window.__socialPortable = {"css":"\n@font-face {font-family:Inter;font-style:nor
   delete window.__socialPortable;
   const chooser = document.querySelector("#offline-chooser");
   const player = document.querySelector("#offline-player");
+  const businessContext = document.querySelector("#social-stage-context");
   const notes = document.querySelector("#offline-notes");
   const error = document.querySelector("#offline-error");
   let frame, timer, ready = false;
@@ -1700,6 +1701,7 @@ window.__socialPortable = {"css":"\n@font-face {font-family:Inter;font-style:nor
     frame = null;
     ready = false;
     player.hidden = true;
+    businessContext.hidden = true;
     error.hidden = true;
     document.body.classList.remove("walkthrough-open");
     let hash = location.hash;
@@ -1711,16 +1713,27 @@ window.__socialPortable = {"css":"\n@font-face {font-family:Inter;font-style:nor
     if (!hash.startsWith("#walkthrough?")) {
       chooser.hidden = false;
       document.title = "EyeTrustAI · Social-listening walkthrough";
-      const checkpoints = document.querySelector("#checkpoints");
-      if (hash === "#checkpoints") {
-        checkpoints.open = true;
-        checkpoints.scrollIntoView();
-      } else window.scrollTo(0, 0);
+      if (hash === "#checkpoints") history.replaceState(null, "", "#paths");
+      window.scrollTo(0, 0);
       return;
     }
     chooser.hidden = true;
     player.hidden = false;
+    const preview = new URLSearchParams(hash.slice('#walkthrough?'.length)).get('preview');
+    const contexts = {
+      configuration:['Define priority','Start with the mention population and what needs immediate attention. The example’s topics and languages are one illustrative scope.'],
+      integration:['Product integration','Start where risk control follows the priority score. The proposed policy works with existing mention sources and review queues.'],
+      review:['Reference evidence','Start by inspecting human priority labels. A real assessment needs appropriate evidence across the stream, including routine mentions.'],
+      policy:['The quality commitment','Start with both risk denominators and the permitted routing action. The displayed policy outcomes are simulated; no statistical bound is computed.'],
+      operations:['The analyst workflow','Start with immediate review and the retained routine queue. Mentions remain available; escalation and response stay with the team.'],
+      monitoring:['Operating value','Start with immediate reviews avoided, audits added and remaining work. The comparison is illustrative; customer value needs its own evaluation.']
+    };
+    const [label, description] = contexts[preview] || ['The complete workflow','Explore how a proposed quality policy is defined, assessed and operated. The mentions, integration and policy outcomes are illustrative.'];
+    businessContext.innerHTML = `<strong>${label}</strong><span>${description}</span><a href="#paths">Choose a path ↗︎</a>`;
+    businessContext.hidden = false;
+
     document.body.classList.add("walkthrough-open");
+    window.scrollTo({top:0,behavior:"instant"});
     frame = document.createElement("iframe");
     frame.id = "social-frame";
     frame.title = "EyeTrustAI social-listening walkthrough";
@@ -1754,6 +1767,7 @@ window.__socialPortable = {"css":"\n@font-face {font-family:Inter;font-style:nor
     timer = setTimeout(() => {
       if (ready) return;
       player.hidden = true;
+      businessContext.hidden = true;
       error.hidden = false;
       document.body.classList.remove("walkthrough-open");
     }, 10000);
@@ -1782,7 +1796,7 @@ window.__socialPortable = {"css":"\n@font-face {font-family:Inter;font-style:nor
     } else if (message.kind === "social-options" && typeof message.query === "string") {
       history.replaceState(null, "", "#walkthrough?" + cleanQuery(message.query));
     } else if (message.kind === "social-contact") {
-      document.dispatchEvent(new CustomEvent('eyetrustai-contact',{detail:{href:"../contact.html?topic=solution&domain=social&source=walkthrough"}}));
+      document.dispatchEvent(new CustomEvent('eyetrustai-contact',{detail:{href:"../contact.html?topic=solution&domain=social&purpose=evaluation&source=walkthrough"}}));
     } else if (message.kind === "social-notes") {
       if (!notes.open) notes.showModal();
     } else if (["social-home", "social-checkpoints", "social-mode"].includes(message.kind)) {

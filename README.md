@@ -9,3 +9,11 @@ The service source and deployment configuration are maintained separately from t
 The short product examples link directly into the complete guided setup, warm-up, assessment, activation and operating journeys. Evidence pages distinguish computed public-data evaluations from product scenarios and explain their scope.
 
 Research data sources, image attribution and font licenses are retained with the relevant pages and assets.
+
+## Guarantee-led customer journeys
+
+The homepage leads with statistical risk guarantees for AI workflows where mistakes matter. Support, invoice processing, social listening, clinical documentation and medical imaging pages connect that promise to a defined error, operating benefit, evidence requirements and an evaluation offer.
+
+Healthcare separates documentation, OCT, fundus and chest X-ray claims. The healthcare demo guide provides business explanations and role-specific links into the existing walkthroughs. Prepared demonstration outcomes remain distinct from statistical evidence; clinical responsibilities are retained.
+
+The shared contact dialog preserves the production service and supports contextual evaluation and clinical-collaboration enquiries. Local comparison pages, previews and verification artifacts are excluded from the public repository.
