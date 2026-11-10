@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="See how EyeTrustAI applies calibrated conformal risk control between an OCT AI finding and an extra checking decision.">
+<title>OCT workflow · EyeTrustAI</title>
+<style>
+:root{font-family:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#1d2d22;background:#f8f9f6}*{box-sizing:border-box}body{margin:0}a{color:inherit}.wrap{width:min(1040px,calc(100% - 42px));margin:auto}
+header{background:#fff;border-bottom:1px solid #e0e7df}header .wrap{min-height:62px;display:flex;justify-content:space-between;align-items:center;gap:14px}.brand{display:flex;align-items:center;gap:9px;text-decoration:none;font-size:18px;font-weight:740;letter-spacing:-.04em}.brand img{width:28px;height:28px}.draft{font-size:11px;font-weight:730;letter-spacing:.08em;text-transform:uppercase;color:#50715b}
+main{padding:46px 0 55px}.eyebrow{margin:0 0 12px;color:#2a6546;font-size:12px;font-weight:750;letter-spacing:.08em;text-transform:uppercase}h1{max-width:900px;margin:0;font-size:clamp(27px,2.6vw,36px);font-weight:600;line-height:1.2;letter-spacing:-.028em}.promise{margin-top:20px;padding:20px 24px;border:1px solid #b8d0bf;border-radius:12px;background:#eaf4ed}.promise-label{display:block;margin-bottom:7px;color:#2a6847;font-size:11px;font-weight:800;letter-spacing:.09em;text-transform:uppercase}.promise p{max-width:900px;margin:0;color:#1a4a32;font-size:22px;line-height:1.32;font-weight:650;letter-spacing:-.015em}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:24px}.step{padding:19px 20px 22px;border:1px solid #d7e0d6;border-radius:11px;background:#fff}.step-num{display:inline-grid;place-items:center;width:27px;height:27px;border-radius:50%;background:#e8f0e8;color:#1d6140;font-size:12px;font-weight:800}.step h2{margin:16px 0 8px;font-size:18px;line-height:1.25;font-weight:680;letter-spacing:-.016em}.step p{margin:0;color:#45584a;font-size:14px;line-height:1.5}.step strong{color:#1b4630}
+figure.pipeline{margin:24px 0 0;padding:18px;border:1px solid #d4dfd5;border-radius:12px;background:#fff}.pipeline-row{display:grid;grid-template-columns:minmax(0,1fr) 18px minmax(0,.9fr) 18px minmax(0,1.22fr) 18px minmax(0,1.25fr);align-items:stretch;gap:8px}.pipeline-stage{min-width:0;padding:14px;border:1px solid #e0e8df;border-radius:9px;background:#fafbf9}.pipeline-stage.module{border-color:#b5d4bd;background:#eaf4ed}.pipeline-stage.workflow{background:#f4f7f3}.stage-label{display:block;margin-bottom:10px;color:#427053;font-size:10px;font-weight:800;letter-spacing:.07em;text-transform:uppercase}.pipeline-stage strong{display:block;color:#1d4230;font-size:16px;line-height:1.3}.pipeline-stage p{margin:7px 0 0;color:#536558;font-size:12px;line-height:1.42}.pipeline-stage img{display:block;width:100%;height:103px;object-fit:contain;background:#111713;border-radius:5px}.pipeline-stage small{display:block;margin-top:7px;color:#68796c;font-size:10px}.pipe-arrow{display:grid;place-items:center;color:#6b9678;font-size:21px}.workflow-option{padding:8px 10px;border:1px solid #d6e2d7;border-radius:6px;background:#fff;color:#2d4f39;font-size:12px;font-weight:700}.workflow-option+.workflow-option{margin-top:7px}.workflow-note{margin-top:10px!important}.pipeline figcaption{margin:12px 2px 0;color:#667568;font-size:11px;line-height:1.4}
+.footer{display:flex;align-items:center;justify-content:space-between;gap:25px;margin-top:26px;padding-top:20px;border-top:1px solid #dce5da}.scope{max-width:730px;margin:0;color:#617063;font-size:12px;line-height:1.5}.button{display:inline-block;padding:12px 18px;border-radius:8px;background:#194a30;color:#fff;text-decoration:none;white-space:nowrap;font-size:13px;font-weight:700}
+@media(max-width:760px){main{padding-top:30px}.pipeline-row{display:flex;flex-direction:column}.pipe-arrow{transform:rotate(90deg);min-height:19px}.pipeline-stage img{height:150px}.steps{grid-template-columns:1fr}.step{padding:16px 18px}.step h2{margin-top:9px}.footer{align-items:stretch;flex-direction:column}.button{text-align:center}}@media(max-width:500px){.wrap{width:min(100% - 28px,1040px)}.draft{font-size:10px}.lead{font-size:15px}.promise{padding:18px}.promise p{font-size:19px}.route-line{align-items:stretch;flex-direction:column}.arrow{transform:rotate(90deg);align-self:center}.fork{flex-direction:column}}
+</style>
+</head>
+<body>
+<header><div class="wrap"><a class="brand" href="/"><img src="assets/logo.png" alt="">EyeTrustAI</a><span class="draft">OCT workflow</span></div></header>
+<main class="wrap">
+<p class="eyebrow">OCT finding review</p>
+<h1>Reduce extra OCT checks with a guaranteed limit on wrong findings.</h1>
+<figure class="pipeline" aria-label="Illustrative placement of the EyeTrustAI module in an OCT workflow"><div class="pipeline-row">
+<div class="pipeline-stage"><span class="stage-label">1 · OCT image</span><img src="demos/assets/imaging-batch1/oct/oct-01.jpg" alt="OLIVES research OCT cross-section"><small>Illustrative research image</small></div>
+<span class="pipe-arrow" aria-hidden="true">→</span>
+<div class="pipeline-stage"><span class="stage-label">2 · Existing OCT AI</span><strong>Fluid finding</strong><p>Proposes whether fluid is present or absent.</p></div>
+<span class="pipe-arrow" aria-hidden="true">→</span>
+<div class="pipeline-stage module"><span class="stage-label">3 · EyeTrustAI</span><strong>Conformal risk-control module</strong><p>Applies a policy calibrated on previously reviewed findings.</p></div>
+<span class="pipe-arrow" aria-hidden="true">→</span>
+<div class="pipeline-stage workflow"><span class="stage-label">4 · Clinical workflow</span><div class="workflow-option">Eligible → skip extra check</div><div class="workflow-option">Otherwise → keep extra check</div><p class="workflow-note">Clinician reviews the final report.</p></div>
+</div><figcaption>EyeTrustAI sits after the AI output and before the extra-check decision. The image illustrates the workflow, not a validated clinical result.</figcaption></figure>
+
+<section class="promise" aria-label="Guarantee"><span class="promise-label">What the guarantee covers</span><p>A statistical limit on wrong AI findings among those allowed to skip checking.</p></section>
+<section class="steps" aria-label="How the policy is established">
+<article class="step"><span class="step-num">1</span><h2>Define the limit</h2><p>You define the mistake and the maximum error rate you can accept among unchecked findings.</p></article>
+<article class="step"><span class="step-num">2</span><h2>Calibrate the conformal risk-control module</h2><p>Reviewed OCT findings set its checking policy for your error limit. If the evidence cannot support it, all checks stay.</p></article>
+<article class="step"><span class="step-num">3</span><h2>Apply it automatically</h2><p>For each new AI finding, the module either <strong>permits skipping the extra check</strong> or keeps it. It does not need to know whether that individual finding is correct.</p></article>
+</section>
+<div class="footer"><p class="scope">This demo uses prepared outcomes. A clinical guarantee needs calibration and evaluation on your defined task and population.</p><a class="button" href="demos/EyeTrustAI-OCT.html#walkthrough?guided=1&amp;annotated=1">See the full workflow ↗</a></div>
+</main>
+</body>
+</html>
